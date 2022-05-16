@@ -24,7 +24,7 @@ public abstract class ChessComponent extends JComponent {
      */
 
 //    private static final Dimension CHESSGRID_SIZE = new Dimension(1080 / 4 * 3 / 8, 1080 / 4 * 3 / 8);
-    private static final Color[] BACKGROUND_COLORS = {Color.WHITE, Color.BLACK};
+    public static final Color[] BACKGROUND_COLORS = {Color.WHITE, Color.BLACK};
     /**
      * handle click event
      */
@@ -40,6 +40,8 @@ public abstract class ChessComponent extends JComponent {
     private ChessboardPoint chessboardPoint;
     protected final ChessColor chessColor;
     private boolean selected;
+    private boolean entered = false;
+    private boolean canBeMovedTo = false;
     protected char name;
 
     protected ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
@@ -72,6 +74,22 @@ public abstract class ChessComponent extends JComponent {
         this.selected = selected;
     }
 
+    public boolean isEntered() {
+        return entered;
+    }
+
+    public void setEntered(boolean entered) {
+        this.entered = entered;
+    }
+
+    public void setCanBeMovedTo(boolean canBeMovedTo) {
+        this.canBeMovedTo = canBeMovedTo;
+    }
+
+    public boolean isCanBeMovedTo() {
+        return canBeMovedTo;
+    }
+
     /**
      * @param another 主要用于和另外一个棋子交换位置
      *                <br>
@@ -98,16 +116,16 @@ public abstract class ChessComponent extends JComponent {
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
             clickController.onClick(this);
-
         }
 
         if(e.getID() == MouseEvent.MOUSE_ENTERED){
-            setBackground(new java.awt.Color(255, 255, 150));
-            setOpaque(true);
+            this.setEntered(true);
+            this.repaint();
         }
 
         if(e.getID() == MouseEvent.MOUSE_EXITED){
-            setOpaque(false);
+            this.setEntered(false);
+            this.repaint();
         }
     }
 

@@ -2,7 +2,9 @@ package controller;
 
 
 import model.ChessComponent;
+import model.KingChessComponent;
 import view.Chessboard;
+import view.ChessboardPoint;
 
 public class ClickController {
     private final Chessboard chessboard;
@@ -18,8 +20,12 @@ public class ClickController {
                 chessComponent.setSelected(true);
                 first = chessComponent;
                 first.repaint();
-                first.setBackground(new java.awt.Color(255, 255, 150));
-                first.setOpaque(true);
+                ChessComponent[][] chessComponents = chessboard.getChessComponents();
+                for(ChessboardPoint chessboardPoint : first.canMoveTo(chessComponents)){
+                    ChessComponent chessComponent1 = chessComponents[chessboardPoint.getX()][chessboardPoint.getY()];
+                    chessComponent1.setCanBeMovedTo(true);
+                    chessComponent1.repaint();
+                }
             }
         } else {
             if (first == chessComponent) { // 再次点击取消选取
@@ -27,13 +33,46 @@ public class ClickController {
                 ChessComponent recordFirst = first;
                 first = null;
                 recordFirst.repaint();
+                ChessComponent[][] chessComponents = chessboard.getChessComponents();
+                for(ChessboardPoint chessboardPoint : recordFirst.canMoveTo(chessComponents)){
+                    ChessComponent chessComponent1 = chessComponents[chessboardPoint.getX()][chessboardPoint.getY()];
+                    chessComponent1.setCanBeMovedTo(false);
+                    chessComponent1.repaint();
+                }
             } else if (handleSecond(chessComponent)) {
                 //repaint in swap chess method.
+
+                ChessComponent[][] chessComponents = chessboard.getChessComponents();
+                for(ChessboardPoint chessboardPoint : first.canMoveTo(chessComponents)){
+                    ChessComponent chessComponent1 = chessComponents[chessboardPoint.getX()][chessboardPoint.getY()];
+                    chessComponent1.setCanBeMovedTo(false);
+                    chessComponent1.repaint();
+                }
                 chessboard.swapChessComponents(first, chessComponent);
                 chessboard.swapColor();
-
                 first.setSelected(false);
                 first = null;
+                boolean dangerKing = false;
+                int posKingX,posKingY;
+                for(int i = 0;i < 8;i++){
+                    for(int j = 0;j < 8;j++){
+                        ChessComponent chess = chessComponents[i][j];
+                        if(chess.getChessColor() != chessboard.getCurrentColor()){
+                            for(ChessboardPoint pos : chess.canMoveTo(chessComponents)){
+                                if(chessComponents[pos.getX()][pos.getY()] instanceof KingChessComponent){
+                                    dangerKing = true;
+                                    chessComponents[pos.getX()][pos.getY()].setCanBeMovedTo(true);
+                                    chessComponents[pos.getX()][pos.getY()].repaint();
+                                    break;
+                                }
+                            }
+                        }
+                        if(dangerKing)
+                            break;
+                    }
+                    if(dangerKing)
+                        break;
+                }
             }
         }
     }

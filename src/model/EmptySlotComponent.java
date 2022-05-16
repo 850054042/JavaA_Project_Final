@@ -28,4 +28,18 @@ public class EmptySlotComponent extends ChessComponent {
         //No resource!
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Highlights the model if selected.
+        if(isEntered()){
+            g.setColor(new java.awt.Color(255, 255, 150));
+            g.fillRect(0,0,getWidth(),getHeight());
+        }
+        if(isCanBeMovedTo()){
+            g.setColor(Color.YELLOW);
+            g.fillRect(0,0,getWidth(),getHeight());
+        }
+    }
+
 }

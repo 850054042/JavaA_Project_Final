@@ -97,12 +97,19 @@ public class KnightChessComponent extends ChessComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        g.drawImage(knightImage, 0, 0, getWidth() - 13, getHeight() - 20, this);
-        g.drawImage(knightImage, 0, 0, getWidth() , getHeight(), this);
-        g.setColor(Color.BLACK);
+        // Highlights the model if selected.
+        if(isEntered()){
+            g.setColor(new java.awt.Color(255, 255, 150));
+            g.fillRect(0,0,getWidth(),getHeight());
+        }
         if (isSelected()) { // Highlights the model if selected.
             g.setColor(Color.RED);
             g.drawOval(0, 0, getWidth() , getHeight());
         }
+        if(isCanBeMovedTo()){
+            g.setColor(Color.GREEN);
+            g.fillRect(0,0,getWidth(),getHeight());
+        }
+        g.drawImage(knightImage, 0, 0, getWidth() , getHeight(), this);
     }
 }

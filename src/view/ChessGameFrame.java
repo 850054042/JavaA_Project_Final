@@ -10,8 +10,8 @@ import java.awt.*;
  */
 public class ChessGameFrame extends JFrame {
     //    public final Dimension FRAME_SIZE ;
-    private final int WIDTH;
-    private final int HEIGTH;
+    private int WIDTH;
+    private int HEIGTH;
     public final int CHESSBOARD_SIZE;
     private GameController gameController;
 
