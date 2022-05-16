@@ -124,7 +124,7 @@ public class RookChessComponent extends ChessComponent {
             g.drawOval(0, 0, getWidth() , getHeight());
         }
         if(isCanBeMovedTo()){
-            g.setColor(Color.GREEN);
+            g.setColor(new java.awt.Color(140,255,150));
             g.fillRect(0,0,getWidth(),getHeight());
         }
         g.drawImage(rookImage, 0, 0, getWidth() , getHeight(), this);

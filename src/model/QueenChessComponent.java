@@ -122,7 +122,7 @@ public class QueenChessComponent extends ChessComponent {
             g.drawOval(0, 0, getWidth() , getHeight());
         }
         if(isCanBeMovedTo()){
-            g.setColor(Color.GREEN);
+            g.setColor(new java.awt.Color(140,255,150));
             g.fillRect(0,0,getWidth(),getHeight());
         }
         g.drawImage(queenImage, 0, 0, getWidth() , getHeight(), this);

@@ -32,12 +32,13 @@ public class EmptySlotComponent extends ChessComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         // Highlights the model if selected.
+        int origin = (super.getChessboardPoint().getX() + super.getChessboardPoint().getY() + 1) % 2;
         if(isEntered()){
-            g.setColor(new java.awt.Color(255, 255, 150));
+            g.setColor(Color.YELLOW);
             g.fillRect(0,0,getWidth(),getHeight());
         }
         if(isCanBeMovedTo()){
-            g.setColor(Color.YELLOW);
+            g.setColor(new java.awt.Color(155 + 100 * origin, 155 + 100 * origin, 75 + 75 * origin));
             g.fillRect(0,0,getWidth(),getHeight());
         }
     }
