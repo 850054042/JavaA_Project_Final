@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 这个类是一个抽象类，主要表示8*8棋盘上每个格子的棋子情况，当前有两个子类继承它，分别是EmptySlotComponent(空棋子)和RookChessComponent(车)。
@@ -38,6 +39,7 @@ public abstract class ChessComponent extends JComponent {
     private ChessboardPoint chessboardPoint;
     protected final ChessColor chessColor;
     private boolean selected;
+    protected char name;
 
     protected ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
         enableEvents(AWTEvent.MOUSE_EVENT_MASK);
@@ -100,12 +102,11 @@ public abstract class ChessComponent extends JComponent {
 
     /**
      * @param chessboard  棋盘
-     * @param destination 目标位置，如(0, 0), (0, 7)等等
      * @return this棋子对象的移动规则和当前位置(chessboardPoint)能否到达目标位置
      * <br>
      * 这个方法主要是检查移动的合法性，如果合法就返回true，反之是false
      */
-    public abstract boolean canMoveTo(ChessComponent[][] chessboard, ChessboardPoint destination);
+    public abstract List<ChessboardPoint> canMoveTo(ChessComponent[][] chessboard);
 
     /**
      * 这个方法主要用于加载一些特定资源，如棋子图片等等。
@@ -121,5 +122,15 @@ public abstract class ChessComponent extends JComponent {
         Color squareColor = BACKGROUND_COLORS[(chessboardPoint.getX() + chessboardPoint.getY()) % 2];
         g.setColor(squareColor);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
+    }
+
+    public boolean isValid(int pos){
+        return pos >= 0 & pos < 8;
+    }
+
+    public boolean isOpposite(ChessComponent chessComponent){
+        if(!chessComponent.chessColor.equals(chessColor))
+            return chessComponent.chessColor.equals(ChessColor.NONE) ? false:true;
+        return false;
     }
 }

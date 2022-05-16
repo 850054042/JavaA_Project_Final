@@ -11,68 +11,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 这个类表示国际象棋里面的车
+ * 这个类表示国际象棋里面的象
  */
-public class RookChessComponent extends ChessComponent {
+public class BishopChessComponent extends ChessComponent {
     /**
-     * 黑车和白车的图片，static使得其可以被所有车对象共享
+     * 黑象和白象的图片，static使得其可以被所有象对象共享
      * <br>
      * FIXME: 需要特别注意此处加载的图片是没有背景底色的！！！
      */
-    private static Image ROOK_WHITE;
-    private static Image ROOK_BLACK;
+    private static Image BISHOP_WHITE;
+    private static Image BISHOP_BLACK;
 
     /**
-     * 车棋子对象自身的图片，是上面两种中的一种
+     * 象棋子对象自身的图片，是上面两种中的一种
      */
-    private Image rookImage;
+    private Image bishopImage;
 
     /**
-     * 读取加载车棋子的图片
+     * 读取加载象棋子的图片
      *
      * @throws IOException
      */
     public void loadResource() throws IOException {
-        if (ROOK_WHITE == null) {
-            ROOK_WHITE = ImageIO.read(new File("./images/rook-white.png"));
+        if (BISHOP_WHITE == null) {
+            BISHOP_WHITE = ImageIO.read(new File("./images/bishop-white.png"));
         }
 
-        if (ROOK_BLACK == null) {
-            ROOK_BLACK = ImageIO.read(new File("./images/rook-black.png"));
+        if (BISHOP_BLACK == null) {
+            BISHOP_BLACK = ImageIO.read(new File("./images/bishop-black.png"));
         }
     }
 
 
     /**
-     * 在构造棋子对象的时候，调用此方法以根据颜色确定rookImage的图片是哪一种
+     * 在构造棋子对象的时候，调用此方法以根据颜色确定bishopImage的图片是哪一种
      *
      * @param color 棋子颜色
      */
 
-    private void initiateRookImage(ChessColor color) {
+    private void initiateBishopImage(ChessColor color) {
         try {
             loadResource();
             if (color == ChessColor.WHITE) {
-                rookImage = ROOK_WHITE;
+                bishopImage = BISHOP_WHITE;
             } else if (color == ChessColor.BLACK) {
-                rookImage = ROOK_BLACK;
+                bishopImage = BISHOP_BLACK;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public RookChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor color, ClickController listener, int size) {
+    public BishopChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor color, ClickController listener, int size) {
         super(chessboardPoint, location, color, listener, size);
-        this.name = color == ChessColor.BLACK ? 'R':'r';
-        initiateRookImage(color);
+        this.name = color == ChessColor.BLACK ? 'B':'b';
+        initiateBishopImage(color);
     }
 
     /**
-     * 车棋子的移动规则
+     * 象棋子的移动规则
      *
      * @param chessboard 棋盘
-     * @return 车棋子移动的合法性
+     * @return 象棋子的可移动list
      */
 
     @Override
@@ -81,7 +81,7 @@ public class RookChessComponent extends ChessComponent {
         int y = super.getChessboardPoint().getY();
         List<ChessboardPoint> chessboardPoints = new ArrayList<>();
         ChessComponent chess = chessboard[x][y];
-        for(int i = 2;i <= 8;i += 2) {
+        for(int i = 1;i <= 7;i += 2) {
             for (int j = 1; j < 8; j++) {
                 int sinAngle = (int) Math.round(Math.sin(i * 0.7854) * 1.4);
                 int cosAngle = (int) Math.round(Math.cos(i * 0.7854) * 1.4);
@@ -112,8 +112,8 @@ public class RookChessComponent extends ChessComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        g.drawImage(rookImage, 0, 0, getWidth() - 13, getHeight() - 20, this);
-        g.drawImage(rookImage, 0, 0, getWidth() , getHeight(), this);
+//        g.drawImage(bishopImage, 0, 0, getWidth() - 13, getHeight() - 20, this);
+        g.drawImage(bishopImage, 0, 0, getWidth() , getHeight(), this);
         g.setColor(Color.BLACK);
         if (isSelected()) { // Highlights the model if selected.
             g.setColor(Color.RED);
