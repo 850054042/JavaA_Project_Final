@@ -42,5 +42,4 @@ public class EmptySlotComponent extends ChessComponent {
             g.fillRect(0,0,getWidth(),getHeight());
         }
     }
-
 }
