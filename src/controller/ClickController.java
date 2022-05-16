@@ -18,6 +18,8 @@ public class ClickController {
                 chessComponent.setSelected(true);
                 first = chessComponent;
                 first.repaint();
+                first.setBackground(new java.awt.Color(255, 255, 150));
+                first.setOpaque(true);
             }
         } else {
             if (first == chessComponent) { // 再次点击取消选取

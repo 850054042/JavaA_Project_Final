@@ -5,6 +5,7 @@ import controller.ClickController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.List;
@@ -97,6 +98,16 @@ public abstract class ChessComponent extends JComponent {
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
             System.out.printf("Click [%d,%d]\n", chessboardPoint.getX(), chessboardPoint.getY());
             clickController.onClick(this);
+
+        }
+
+        if(e.getID() == MouseEvent.MOUSE_ENTERED){
+            setBackground(new java.awt.Color(255, 255, 150));
+            setOpaque(true);
+        }
+
+        if(e.getID() == MouseEvent.MOUSE_EXITED){
+            setOpaque(false);
         }
     }
 
