@@ -34,10 +34,6 @@ public class ChessGameFrame extends JFrame {
         addLoadButton();
     }
 
-
-    /**
-     * 在游戏面板中添加棋盘
-     */
     private void addChessboard() {
         Chessboard chessboard = new Chessboard(CHESSBOARD_SIZE, CHESSBOARD_SIZE);
         gameController = new GameController(chessboard);
@@ -46,9 +42,6 @@ public class ChessGameFrame extends JFrame {
         add(chessboard);
     }
 
-    /**
-     * 在游戏面板中添加标签
-     */
     private void addLabel() {
         JLabel statusLabel = new JLabel("Sample label");
         statusLabel.setLocation(HEIGTH, HEIGTH / 10);
@@ -57,13 +50,9 @@ public class ChessGameFrame extends JFrame {
         add(statusLabel);
     }
 
-    /**
-     * 在游戏面板中增加一个按钮，如果按下的话就会显示Hello, world!
-     */
-
     private void addHelloButton() {
         JButton button = new JButton("Show Hello Here");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));
+        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Nice to see you!"));
         button.setLocation(HEIGTH, HEIGTH / 10 + 120);
         button.setSize(200, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
