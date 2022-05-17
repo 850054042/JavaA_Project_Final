@@ -1,6 +1,7 @@
 package controller;
 
 
+import model.ChessColor;
 import model.ChessComponent;
 import model.KingChessComponent;
 import view.Chessboard;
@@ -52,26 +53,43 @@ public class ClickController {
                 chessboard.swapColor();
                 first.setSelected(false);
                 first = null;
-                boolean dangerKing = false;
-                int posKingX,posKingY;
+                boolean[] dangerKing = {false, false};
+                int[] posKing1 = new int[2],posKing2 = new int[2];
+                boolean has1 = false;
                 for(int i = 0;i < 8;i++){
                     for(int j = 0;j < 8;j++){
                         ChessComponent chess = chessComponents[i][j];
-                        if(chess.getChessColor() != chessboard.getCurrentColor()){
-                            for(ChessboardPoint pos : chess.canMoveTo(chessComponents)){
-                                if(chessComponents[pos.getX()][pos.getY()] instanceof KingChessComponent){
-                                    dangerKing = true;
-                                    chessComponents[pos.getX()][pos.getY()].setCanBeMovedTo(true);
-                                    chessComponents[pos.getX()][pos.getY()].repaint();
-                                    break;
-                                }
+                        if(chess instanceof KingChessComponent){
+                            if(has1){
+                                posKing2[0] = i;
+                                posKing2[1] = j;
+                            }
+                            else{
+                                posKing1[0] = i;
+                                posKing1[1] = j;
+                                has1 = true;
                             }
                         }
-                        if(dangerKing)
-                            break;
+                        int chesscolor = chess.getChessColor() == ChessColor.BLACK ? 1:0;
+                        for(ChessboardPoint pos : chess.canMoveTo(chessComponents)){
+                            if(chessComponents[pos.getX()][pos.getY()] instanceof KingChessComponent){
+                                dangerKing[chesscolor] = true;
+                                break;
+                            }
+                        }
                     }
-                    if(dangerKing)
-                        break;
+                }
+                if(chessComponents[posKing1[0]][posKing1[1]].getChessColor() == ChessColor.BLACK){
+                    chessComponents[posKing1[0]][posKing1[1]].setCanBeMovedTo(dangerKing[0]);
+                    chessComponents[posKing1[0]][posKing1[1]].repaint();
+                    chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[1]);
+                    chessComponents[posKing2[0]][posKing2[1]].repaint();
+                }
+                else{
+                    chessComponents[posKing1[0]][posKing1[1]].setCanBeMovedTo(dangerKing[1]);
+                    chessComponents[posKing1[0]][posKing1[1]].repaint();
+                    chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[0]);
+                    chessComponents[posKing2[0]][posKing2[1]].repaint();
                 }
             }
         }
