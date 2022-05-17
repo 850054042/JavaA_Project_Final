@@ -1,4 +1,4 @@
-//选择游戏：新游戏/选择存档/返回
+//玩家VS玩家/玩家VS电脑，可以从前者进入对战界面
 package view;
 
 import controller.GameController;
@@ -7,57 +7,57 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ChooseGame extends JFrame{
+public class ChooseModel extends JFrame {
     private final int WIDTH;
     private final int HEIGTH;
     private GameController gameController;
-    public ChooseGame(int width, int height) {
-        setTitle("Choose Game");
+
+    public ChooseModel(int width, int height) {
+        setTitle("Choose Model");
         this.WIDTH = width;
         this.HEIGTH = height;
 
         setVisible(true);
         setSize(width, height);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); // Center the window.
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
 
-        addNewGameButton();
-        addLoadGameButton();
+        addHumanBattleButton();
+        addComputerBattleButton();
         addReturnButton();
     }
 
-    private void addNewGameButton() {
-        JButton button = new JButton("新游戏");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
+    private void addHumanBattleButton() {
+        JButton button = new JButton("玩家VS玩家");
+        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 180);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseGame.this.dispose();
-                ChooseModel chooseModel = new ChooseModel(360,760);
-                chooseModel.setVisible(true);
-                System.out.println("Click StartNewGame");
+                ChooseModel.this.dispose();
+                ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
+                chessGameFrame.setVisible(true);
+                System.out.println("Click Battle!");
             }
         });
     }
 
-    private void addLoadGameButton() {
-        JButton button = new JButton("选择存档");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 280);
+    private void addComputerBattleButton() {
+        JButton button = new JButton("玩家VS电脑");
+        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseGame.this.dispose();
-                new ChooseRecord(360,760);
-                System.out.println("Click ChooseRecord");
+                ChooseModel.this.dispose();
+                ChooseLevel chooseLevel = new ChooseLevel(360,760);
+                chooseLevel.setVisible(true);
+                System.out.println("Click ChooseLevel");
             }
         });
     }
@@ -73,9 +73,9 @@ public class ChooseGame extends JFrame{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseGame.this.dispose();
-                Menu menu = new Menu(360,760);
-                menu.setVisible(true);
+                ChooseModel.this.dispose();
+                ChooseGame chooseGame = new ChooseGame(360,760);
+                chooseGame.setVisible(true);
                 System.out.println("Click Return");
             }
         });

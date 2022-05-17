@@ -29,12 +29,6 @@ public class ChooseRecord extends JFrame{
         addReturnButton();
     }
 
-
-
-    /**
-     * 在游戏面板中增加一个按钮，如果按下的话就会显示Hello, world!
-     */
-
     private void addRecordOneButton() {
         JButton button = new JButton("存档一");
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
@@ -48,12 +42,8 @@ public class ChooseRecord extends JFrame{
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordOne");
             }
-
         });
-
     }
-
-
 
     private void addRecordTwoButton() {
         JButton button = new JButton("存档二");
@@ -68,9 +58,7 @@ public class ChooseRecord extends JFrame{
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordTwo");
             }
-
         });
-
     }
 
     private void addRecordThreeButton() {
@@ -86,9 +74,7 @@ public class ChooseRecord extends JFrame{
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordThree");
             }
-
         });
-
     }
 
     private void addReturnButton() {
@@ -106,7 +92,6 @@ public class ChooseRecord extends JFrame{
                 new ChooseGame(360,760);
                 System.out.println("Click ChooseRecordThree");
             }
-
         });
     }
 }

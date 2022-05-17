@@ -76,7 +76,7 @@ public class ChooseLevel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ChooseLevel.this.dispose();
-                new ChooseGame(360,760);
+                new ChooseModel(360,760);
                 System.out.println("Click Return");
             }
         });
