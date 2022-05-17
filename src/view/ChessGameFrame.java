@@ -14,6 +14,7 @@ public class ChessGameFrame extends JFrame {
     private int HEIGTH;
     public final int CHESSBOARD_SIZE;
     private GameController gameController;
+    private Chessboard chessboard;
 
     public ChessGameFrame(int width, int height) {
         setTitle("2022 CS102A Project Demo"); //设置标题
@@ -41,6 +42,7 @@ public class ChessGameFrame extends JFrame {
         Chessboard chessboard = new Chessboard(CHESSBOARD_SIZE, CHESSBOARD_SIZE);
         gameController = new GameController(chessboard);
         chessboard.setLocation(HEIGTH / 10, HEIGTH / 10);
+        this.chessboard = chessboard;
         add(chessboard);
     }
 
