@@ -30,7 +30,8 @@ public class Chessboard extends JComponent {
     //all chessComponents in this chessboard are shared only one model controller
     private final ClickController clickController = new ClickController(this);
     private final int CHESS_SIZE;
-
+    public static int gameMode = 0;
+    public static int AILevel = 0;
 
     public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
@@ -88,9 +89,25 @@ public class Chessboard extends JComponent {
         }
         chess1.swapLocation(chess2);
         int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
-        chessComponents[row1][col1] = chess1;
         int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
+        chessComponents[row1][col1] = chess1;
         chessComponents[row2][col2] = chess2;
+        if(chess1 instanceof PawnChessComponent){
+            if(row1 == 0 || row1 == 7){
+                if(chess1.getChessColor() == currentColor) {
+                    remove(chess1);
+                    PawnChangeMenu pawnChangeMenu = new PawnChangeMenu(this, chess1, clickController, CHESS_SIZE);
+                    pawnChangeMenu.setVisible(true);
+                }
+                else{
+                    remove(chess1);
+                    ChessComponent chess = new QueenChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), clickController, CHESS_SIZE);
+                    add(chess);
+                    chess.repaint();
+                }
+            }
+        }
+        System.out.println(chessComponents[row1][col1] instanceof QueenChessComponent);
 
         chess1.repaint();
         chess2.repaint();

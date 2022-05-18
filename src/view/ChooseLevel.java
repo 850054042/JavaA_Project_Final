@@ -38,7 +38,16 @@ public class ChooseLevel extends JFrame {
 
     private void addEasyButton() {
         JButton button = new JButton("简单");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Coming soon!"));
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ChooseLevel.this.dispose();
+                ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
+                chessGameFrame.setVisible(true);
+                System.out.println("Easy Mode!");
+                Chessboard.AILevel = 1;
+            }
+        });
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
@@ -47,7 +56,16 @@ public class ChooseLevel extends JFrame {
 
     private void addNormalButton() {
         JButton button = new JButton("一般");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Coming soon!"));
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ChooseLevel.this.dispose();
+                ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
+                chessGameFrame.setVisible(true);
+                System.out.println("Normal Mode!");
+                Chessboard.AILevel = 2;
+            }
+        });
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
@@ -56,7 +74,16 @@ public class ChooseLevel extends JFrame {
 
     private void addHardButton() {
         JButton button = new JButton("困难");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Coming soon!"));
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ChooseLevel.this.dispose();
+                ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
+                chessGameFrame.setVisible(true);
+                System.out.println("Hard Mode!");
+                Chessboard.AILevel = 3;
+            }
+        });
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 380);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));

@@ -41,6 +41,7 @@ public class ChooseModel extends JFrame {
                 ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
                 chessGameFrame.setVisible(true);
                 System.out.println("Click Battle!");
+                Chessboard.gameMode = 0;
             }
         });
     }
@@ -58,6 +59,7 @@ public class ChooseModel extends JFrame {
                 ChooseLevel chooseLevel = new ChooseLevel(360,760);
                 chooseLevel.setVisible(true);
                 System.out.println("Click ChooseLevel");
+                Chessboard.gameMode = 1;
             }
         });
     }

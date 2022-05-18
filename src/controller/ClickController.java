@@ -7,6 +7,10 @@ import model.KingChessComponent;
 import view.Chessboard;
 import view.ChessboardPoint;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class ClickController {
     private final Chessboard chessboard;
     private ChessComponent first;
@@ -50,7 +54,6 @@ public class ClickController {
                     chessComponent1.repaint();
                 }
                 chessboard.swapChessComponents(first, chessComponent);
-                chessboard.swapColor();
                 first.setSelected(false);
                 first = null;
                 boolean[] dangerKing = {false, false};
@@ -90,6 +93,30 @@ public class ClickController {
                     chessComponents[posKing1[0]][posKing1[1]].repaint();
                     chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[0]);
                     chessComponents[posKing2[0]][posKing2[1]].repaint();
+                }
+                if(Chessboard.gameMode == 0) {
+                    chessboard.swapColor();
+                }
+                else{
+                    switch (Chessboard.AILevel){
+                        case 1:
+                            break;
+                        case 2:
+                            ChessColor AIColor = chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.WHITE:ChessColor.BLACK;
+                            List<ChessComponent> chessComponentList = new ArrayList<>();
+                            for(int i = 0;i < 8;i++)
+                                for(int j = 0;j < 8;j++)
+                                    if(chessComponents[i][j].getChessColor() == AIColor && !chessComponents[i][j].canMoveTo(chessComponents).isEmpty())
+                                        chessComponentList.add(chessComponents[i][j]);
+                            Random r = new Random();
+                            ChessComponent chess = chessComponentList.get(r.nextInt(chessComponentList.size()));
+                            ChessboardPoint targetPoint = chess.canMoveTo(chessComponents).get(r.nextInt(chess.canMoveTo(chessComponents).size()));
+                            ChessComponent targetChess = chessComponents[targetPoint.getX()][targetPoint.getY()];
+                            chessboard.swapChessComponents(chess, targetChess);
+                            break;
+                        case 3:
+                            break;
+                    }
                 }
             }
         }

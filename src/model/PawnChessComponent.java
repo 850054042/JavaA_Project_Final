@@ -83,10 +83,11 @@ public class PawnChessComponent extends ChessComponent {
         ChessComponent chess = chessboard[x][y];
         if(super.getChessColor() == ChessColor.BLACK){
             if(x == 1){
-                if(chessboard[2][y].getChessColor().equals(ChessColor.NONE))
-                    chessboardPoints.add(new ChessboardPoint(2,y));
-                if(chessboard[3][y].getChessColor().equals(ChessColor.NONE))
-                    chessboardPoints.add(new ChessboardPoint(3,y));
+                if(chessboard[2][y].getChessColor().equals(ChessColor.NONE)) {
+                    chessboardPoints.add(new ChessboardPoint(2, y));
+                    if (chessboard[3][y].getChessColor().equals(ChessColor.NONE))
+                        chessboardPoints.add(new ChessboardPoint(3, y));
+                }
                 if(isValid(y - 1)){
                     if(chess.isOpposite(chessboard[2][y - 1]))
                         chessboardPoints.add(new ChessboardPoint(2,y - 1));
@@ -113,10 +114,11 @@ public class PawnChessComponent extends ChessComponent {
         }
         else{
             if(x == 6){
-                if(chessboard[5][y].getChessColor().equals(ChessColor.NONE))
-                    chessboardPoints.add(new ChessboardPoint(5,y));
-                if(chessboard[4][y].getChessColor().equals(ChessColor.NONE))
-                    chessboardPoints.add(new ChessboardPoint(4,y));
+                if(chessboard[5][y].getChessColor().equals(ChessColor.NONE)) {
+                    chessboardPoints.add(new ChessboardPoint(5, y));
+                    if (chessboard[4][y].getChessColor().equals(ChessColor.NONE))
+                        chessboardPoints.add(new ChessboardPoint(4, y));
+                }
                 if(isValid(y - 1)){
                     if(chess.isOpposite(chessboard[5][y - 1]))
                         chessboardPoints.add(new ChessboardPoint(5,y - 1));
