@@ -69,7 +69,7 @@ public class PrepareExit extends JFrame {
 
     }
 
-    private void addBackToMenuButton() {  /** 这里可以用if else，如果没有操作则直接返回主菜单 */
+    private void addBackToMenuButton() {
         JButton button = new JButton("回到主菜单");
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 480);
         button.setFont(new Font("黑体", Font.BOLD, 20));
