@@ -33,7 +33,7 @@ public class Menu extends JFrame {
 
     private void addLabel() {
         JLabel statusLabel = new JLabel("国际象棋");
-        statusLabel.setLocation(HEIGTH / 10 + 20, HEIGTH / 10);
+        statusLabel.setLocation(HEIGTH / 10 + 15, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
         add(statusLabel);

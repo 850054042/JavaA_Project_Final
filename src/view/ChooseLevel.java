@@ -12,7 +12,7 @@ public class ChooseLevel extends JFrame {
     private final int HEIGTH;
     private GameController gameController;
     public ChooseLevel(int width, int height) {
-        setTitle("Choose Level");
+        setTitle("选择难度");
         this.WIDTH = width;
         this.HEIGTH = height;
 

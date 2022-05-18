@@ -12,7 +12,7 @@ public class ChooseGame extends JFrame{
     private final int HEIGTH;
     private GameController gameController;
     public ChooseGame(int width, int height) {
-        setTitle("Choose Game");
+        setTitle("选择游戏");
         this.WIDTH = width;
         this.HEIGTH = height;
 

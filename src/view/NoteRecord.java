@@ -1,5 +1,3 @@
-//选择存档：/一/二/三/返回
-//存档我还不会做，麻烦你了
 package view;
 
 import controller.GameController;
@@ -8,12 +6,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ChooseRecord extends JFrame{
+public class NoteRecord extends JFrame{
     private final int WIDTH;
     private final int HEIGTH;
     private GameController gameController;
-    public ChooseRecord(int width, int height) {
-        setTitle("选择存档"); //设置标题
+    public NoteRecord(int width, int height) {
+        setTitle("记录存档"); //设置标题
         this.WIDTH = width;
         this.HEIGTH = height;
 
@@ -38,7 +36,7 @@ public class ChooseRecord extends JFrame{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
+                NoteRecord.this.dispose();
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordOne");
             }
@@ -54,7 +52,7 @@ public class ChooseRecord extends JFrame{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
+                NoteRecord.this.dispose();
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordTwo");
             }
@@ -70,7 +68,7 @@ public class ChooseRecord extends JFrame{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
+                NoteRecord.this.dispose();
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordThree");
             }
@@ -88,11 +86,10 @@ public class ChooseRecord extends JFrame{
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
-                new ChooseGame(360,760);
-                System.out.println("Click ChooseRecordThree");
+                NoteRecord.this.dispose();
+                new PrepareExit(1000,760);
+                System.out.println("Click Return");
             }
         });
     }
 }
-

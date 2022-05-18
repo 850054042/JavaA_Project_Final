@@ -13,7 +13,7 @@ public class ChooseModel extends JFrame {
     private GameController gameController;
 
     public ChooseModel(int width, int height) {
-        setTitle("Choose Model");
+        setTitle("选择模式");
         this.WIDTH = width;
         this.HEIGTH = height;
 
