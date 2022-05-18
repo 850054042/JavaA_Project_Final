@@ -81,6 +81,21 @@ public class Chessboard extends JComponent {
         add(chessComponents[row][col] = chessComponent);
     }
 
+    public void castleSwap(ChessComponent chess1, ChessComponent chess2){//王车易位
+        System.out.println("castle!");
+        int row = chess1.getChessboardPoint().getX();
+        int col1 = chess1.getChessboardPoint().getY();
+        int col2 = chess2.getChessboardPoint().getY();
+        if(col1 > col2){
+            swapChessComponents(chess1,chessComponents[row][col1 - 2]);
+            swapChessComponents(chess2,chessComponents[row][col1 - 1]);
+        }
+        else{
+            swapChessComponents(chess1,chessComponents[row][col1 + 2]);
+            swapChessComponents(chess2,chessComponents[row][col1 + 1]);
+        }
+    }
+
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
         if (!(chess2 instanceof EmptySlotComponent)) {
@@ -107,7 +122,6 @@ public class Chessboard extends JComponent {
                 }
             }
         }
-        System.out.println(chessComponents[row1][col1] instanceof QueenChessComponent);
 
         chess1.repaint();
         chess2.repaint();
