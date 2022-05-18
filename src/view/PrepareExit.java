@@ -23,13 +23,13 @@ public class PrepareExit extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(null);
 
-        addStartGameButton();
+        addReturnGameButton();
         addLoadButton();
         addChangeStyleButton();
-        addExitButton();
+        addBackToMenuButton();
     }
 
-    private void addStartGameButton() {
+    private void addReturnGameButton() { /** 这个要返回当前的棋盘*/
         JButton button = new JButton("返回游戏");
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
         button.setSize(200, 60);
@@ -41,7 +41,7 @@ public class PrepareExit extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
                 new ChooseGame(360,760);
-                System.out.println("Click ChooseGame");
+                System.out.println("Click ReturnToGame");
             }
         });
     }
@@ -69,8 +69,8 @@ public class PrepareExit extends JFrame {
 
     }
 
-    private void addExitButton() {
-        JButton button = new JButton("退出游戏");
+    private void addBackToMenuButton() {  /** 这里可以用if else，如果没有操作则直接返回主菜单 */
+        JButton button = new JButton("回到主菜单");
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 480);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
@@ -82,8 +82,7 @@ public class PrepareExit extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
                 new NoteRecord(360,760);
-                System.out.println("Click ChooseGame");
-
+                System.out.println("Click BackToMenu");
             }
         });
     }

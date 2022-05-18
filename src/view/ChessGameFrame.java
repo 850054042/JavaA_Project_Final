@@ -89,7 +89,7 @@ public class ChessGameFrame extends JFrame {
     }
 
     private void addReturnButton() {
-        JButton button = new JButton("返回主菜单");
+        JButton button = new JButton("退出比赛");
         button.setLocation(HEIGTH - 25, HEIGTH / 10 + 520);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));

@@ -1,3 +1,4 @@
+/**这个是存档，如果空存档则直接覆盖，有存档要提示一下*/
 package view;
 
 import controller.GameController;
