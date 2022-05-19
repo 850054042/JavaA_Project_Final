@@ -85,7 +85,62 @@ public class KingChessComponent extends ChessComponent {
             for(int j = y - 1;j <= y + 1;j++)
                 if((i != x || j != y) && isValid(i) && isValid(j))
                     if(chess.isOpposite(chessboard[i][j]) || chessboard[i][j].getChessColor().equals(ChessColor.NONE))
-                        chessboardPoints.add(new ChessboardPoint(i,j));
+                        chessboardPoints.add(new ChessboardPoint(i,j));//基础走法
+        boolean castleLeft = true, castleRight = true;
+        if(this.isHasMoved()){
+            castleLeft = false;
+            castleRight = false;
+        }//王车易位时王不能动过
+        if(chessboard[x][0] instanceof RookChessComponent) {
+            if (chessboard[x][0].isHasMoved())
+                castleLeft = false;//左侧判断，左车不能动过
+            else{
+                for(int i = 0;i <= 4;i++) {
+                    if(i != 0 && i != 4)
+                        if (!(chessboard[x][i] instanceof EmptySlotComponent))
+                            castleLeft = false;//中间非空不能易位
+                    if(i >= 2) {
+                        for (int j = 0; j < 8; j++) {
+                            for (int k = 0; k < 8; k++) {
+                                if(!(chessboard[j][k] instanceof KingChessComponent)) {
+                                    if (chessboard[j][k].getChessColor() != chessColor
+                                            && chessboard[j][k].canMoveTo(chessboard).contains(new ChessboardPoint(x, i))) {
+                                        castleLeft = false;//王经过的格子都不能受威胁
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(chessboard[x][7] instanceof RookChessComponent) {
+            if (chessboard[x][7].isHasMoved())
+                castleRight = false;//右侧判断，右车不能动过
+            else{
+                for(int i = 4;i <= 7;i++) {
+                    if(i != 7 && i != 4)
+                        if (!(chessboard[x][i] instanceof EmptySlotComponent))
+                            castleRight = false;//中间非空不能易位
+                    if(i <= 6) {
+                        for (int j = 0; j < 8; j++) {
+                            for (int k = 0; k < 8; k++) {
+                                if(!(chessboard[j][k] instanceof KingChessComponent)) {
+                                    if (chessboard[j][k].getChessColor() != chessColor
+                                            && chessboard[j][k].canMoveTo(chessboard).contains(new ChessboardPoint(x, i))) {
+                                        castleRight = false;//王经过的格子都不能受威胁
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if(castleLeft)
+            chessboardPoints.add(new ChessboardPoint(x,0));
+        if(castleRight)
+            chessboardPoints.add(new ChessboardPoint(x,7));
         return chessboardPoints;
     }
 

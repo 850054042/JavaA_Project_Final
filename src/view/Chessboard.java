@@ -1,12 +1,14 @@
 package view;
 
 
+import action.Acts;
 import model.*;
 import controller.ClickController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 这个类表示面板上的棋盘组件对象
@@ -32,6 +34,7 @@ public class Chessboard extends JComponent {
     private final int CHESS_SIZE;
     public static int gameMode = 0;
     public static int AILevel = 0;
+    public Stack<Acts> actions = new Stack<>();
 
     public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
@@ -81,9 +84,36 @@ public class Chessboard extends JComponent {
         add(chessComponents[row][col] = chessComponent);
     }
 
+    public void castleSwap(ChessComponent chess1, ChessComponent chess2){//王车易位
+        System.out.println("castle!");
+        int row = chess1.getChessboardPoint().getX();
+        int col1 = chess1.getChessboardPoint().getY();
+        int col2 = chess2.getChessboardPoint().getY();
+        Acts acts = new Acts();
+        acts.setCastle(true);
+        acts.setStartingPoint(new ChessboardPoint(row, col1));
+        acts.setTargetPoint(new ChessboardPoint(row, col2));
+        actions.push(acts);
+        if(col1 > col2){
+            swapChessComponents(chess1,chessComponents[row][col1 - 2]);
+            swapChessComponents(chess2,chessComponents[row][col1 - 1]);
+        }
+        else{
+            swapChessComponents(chess1,chessComponents[row][col1 + 2]);
+            swapChessComponents(chess2,chessComponents[row][col1 + 1]);
+        }
+    }
+
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
+        boolean isChess2Empty = true;
+        Acts acts = new Acts();
+        acts.setBeEaten(chess2);
+        acts.setStartingPoint(chess1.getChessboardPoint());
+        acts.setTargetPoint(chess2.getChessboardPoint());
+        acts.setBeEatenPoint(chess2.getChessboardPoint());
         if (!(chess2 instanceof EmptySlotComponent)) {
+            isChess2Empty = false;
             remove(chess2);
             add(chess2 = new EmptySlotComponent(chess2.getChessboardPoint(), chess2.getLocation(), clickController, CHESS_SIZE));
         }
@@ -94,9 +124,10 @@ public class Chessboard extends JComponent {
         chessComponents[row2][col2] = chess2;
         if(chess1 instanceof PawnChessComponent){
             if(row1 == 0 || row1 == 7){
+                acts.setPawnChange(true);
                 if(chess1.getChessColor() == currentColor) {
                     remove(chess1);
-                    PawnChangeMenu pawnChangeMenu = new PawnChangeMenu(this, chess1, clickController, CHESS_SIZE);
+                    PawnChangeMenu pawnChangeMenu = new PawnChangeMenu(this, chess1, clickController, CHESS_SIZE, acts);
                     pawnChangeMenu.setVisible(true);
                 }
                 else{
@@ -106,11 +137,87 @@ public class Chessboard extends JComponent {
                     chess.repaint();
                 }
             }
+            if(col1 != col2 && isChess2Empty){
+                acts.setBeEatenPoint(new ChessboardPoint(row2,col1));
+                acts.setBeEaten(chessComponents[row2][col1]);
+                remove(chessComponents[row2][col1]);
+                add(chessComponents[row2][col1] = new EmptySlotComponent(new ChessboardPoint(row2,col1), chessComponents[row2][col1].getLocation(),clickController,CHESS_SIZE));
+                chessComponents[row2][col1].repaint();
+            }
         }
-        System.out.println(chessComponents[row1][col1] instanceof QueenChessComponent);
-
+        actions.push(acts);
         chess1.repaint();
         chess2.repaint();
+    }
+
+    public void undo(){
+        if(actions.empty()){
+            JOptionPane.showMessageDialog(null,"已经没法悔棋了！","提示",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Acts acts = actions.pop();
+        ChessComponent chess1 = chessComponents[acts.getTargetPoint().getX()][acts.getTargetPoint().getY()];
+        ChessComponent chess2 = chessComponents[acts.getStartingPoint().getX()][acts.getStartingPoint().getY()];
+        if(acts.isCastle()){
+            int row = acts.getStartingPoint().getX();
+            int cl1 = acts.getStartingPoint().getY();
+            int cl2 = acts.getTargetPoint().getY();
+            if(cl1 < cl2){
+                chess1 = chessComponents[row][6];
+                chess2 = chessComponents[row][4];
+                chess1.swapLocation(chess2);
+                int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
+                int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
+                chessComponents[row1][col1] = chess1;
+                chessComponents[row2][col2] = chess2;
+                chess1 = chessComponents[row][5];
+                chess2 = chessComponents[row][7];
+                chess1.swapLocation(chess2);
+                row1 = chess1.getChessboardPoint().getX(); col1 = chess1.getChessboardPoint().getY();
+                row2 = chess2.getChessboardPoint().getX(); col2 = chess2.getChessboardPoint().getY();
+                chessComponents[row1][col1] = chess1;
+                chessComponents[row2][col2] = chess2;
+            }
+            else{
+                chess1 = chessComponents[row][2];
+                chess2 = chessComponents[row][4];
+                chess1.swapLocation(chess2);
+                int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
+                int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
+                chessComponents[row1][col1] = chess1;
+                chessComponents[row2][col2] = chess2;
+                chess1 = chessComponents[row][3];
+                chess2 = chessComponents[row][0];
+                chess1.swapLocation(chess2);
+                row1 = chess1.getChessboardPoint().getX(); col1 = chess1.getChessboardPoint().getY();
+                row2 = chess2.getChessboardPoint().getX(); col2 = chess2.getChessboardPoint().getY();
+                chessComponents[row1][col1] = chess1;
+                chessComponents[row2][col2] = chess2;
+            }
+            swapColor();
+            return;
+        }
+        chess1.swapLocation(chess2);
+        int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
+        int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
+        chessComponents[row1][col1] = chess1;
+        chessComponents[row2][col2] = chess2;
+        if(acts.isPawnChange()){
+            ChessComponent changed = chessComponents[acts.getTargetPoint().getX()][acts.getTargetPoint().getY()];
+            remove(changed);
+            ChessComponent chess = new PawnChessComponent(changed.getChessboardPoint(), changed.getLocation(), changed.getChessColor(), clickController, CHESS_SIZE);
+            add(chess);
+            chess.repaint();
+        }
+        int row3 = acts.getBeEatenPoint().getX(), col3 = acts.getBeEatenPoint().getY();
+        remove(chessComponents[row3][col3]);
+        add(acts.getBeEaten());
+        chessComponents[row3][col3] = acts.getBeEaten();
+        chessComponents[row3][col3].setEntered(false);
+        acts.getBeEaten().repaint();
+        chessComponents[row3][col3].repaint();
+        chess1.repaint();
+        swapColor();
     }
 
     public void initiateEmptyChessboard() {
