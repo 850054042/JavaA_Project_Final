@@ -69,7 +69,7 @@ public class ChessGameFrame extends JFrame {
         add(button);
 
         button.addActionListener(e -> {
-            System.out.println("Click Restart");
+            chessboard.undo();
         });
     }
 

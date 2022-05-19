@@ -143,6 +143,38 @@ public class PawnChessComponent extends ChessComponent {
                 }
             }
         }
+        if(super.getChessColor() == ChessColor.BLACK){
+            if(isValid(y - 1)) {
+                if (x == 4 && chessboard[x][y - 1] instanceof PawnChessComponent && chessboard[x][y - 1].getChessColor() != super.getChessColor()) {
+                    if (chessboard[x][y - 1].isLastMove()) {
+                        chessboardPoints.add(new ChessboardPoint(x + 1, y - 1));
+                    }
+                }
+            }
+            if(isValid(y + 1)) {
+                if (x == 4 && chessboard[x][y + 1] instanceof PawnChessComponent && chessboard[x][y + 1].getChessColor() != super.getChessColor()) {
+                    if (chessboard[x][y + 1].isLastMove()) {
+                        chessboardPoints.add(new ChessboardPoint(x + 1, y + 1));
+                    }
+                }
+            }
+        }
+        else{
+            if(isValid(y - 1)) {
+                if (x == 3 && chessboard[x][y - 1] instanceof PawnChessComponent && chessboard[x][y - 1].getChessColor() != super.getChessColor()) {
+                    if (chessboard[x][y - 1].isLastMove()) {
+                        chessboardPoints.add(new ChessboardPoint(x - 1, y - 1));
+                    }
+                }
+            }
+            if(isValid(y + 1)) {
+                if (x == 3 && chessboard[x][y + 1] instanceof PawnChessComponent && chessboard[x][y + 1].getChessColor() != super.getChessColor()) {
+                    if (chessboard[x][y + 1].isLastMove()) {
+                        chessboardPoints.add(new ChessboardPoint(x - 1, y + 1));
+                    }
+                }
+            }
+        }
         return chessboardPoints;
     }
 

@@ -42,7 +42,8 @@ public abstract class ChessComponent extends JComponent {
     private boolean selected;
     private boolean entered = false;
     private boolean canBeMovedTo = false;
-    private boolean hasMoved = false;
+    private boolean isLastMove = false;
+    private int hasMoved = 0;
     protected char name;
 
     protected ChessComponent(ChessboardPoint chessboardPoint, Point location, ChessColor chessColor, ClickController clickController, int size) {
@@ -53,6 +54,14 @@ public abstract class ChessComponent extends JComponent {
         this.chessColor = chessColor;
         this.selected = false;
         this.clickController = clickController;
+    }
+
+    public boolean isLastMove() {
+        return isLastMove;
+    }
+
+    public void setLastMove(boolean lastMove) {
+        isLastMove = lastMove;
     }
 
     public ChessboardPoint getChessboardPoint() {
@@ -92,11 +101,14 @@ public abstract class ChessComponent extends JComponent {
     }
 
     public void setHasMoved(boolean hasMoved) {
-        this.hasMoved = hasMoved;
+        if(hasMoved)
+            this.hasMoved++;
+        else
+            this.hasMoved--;
     }
 
     public boolean isHasMoved() {
-        return hasMoved;
+        return hasMoved != 0;
     }
 
     /**

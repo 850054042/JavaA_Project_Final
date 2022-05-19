@@ -1,5 +1,6 @@
 package view;
 
+import action.Acts;
 import controller.ClickController;
 import model.*;
 
@@ -11,13 +12,15 @@ import java.awt.event.ActionListener;
 public class PawnChangeMenu extends JFrame {
     private final int WIDTH = 360;
     private final int HEIGTH = 760;
-    public PawnChangeMenu(Chessboard chessboard, ChessComponent chess, ClickController listener, int size) {
+    private Acts acts;
+    public PawnChangeMenu(Chessboard chessboard, ChessComponent chess, ClickController listener, int size, Acts acts) {
         setTitle("PawnChangeMenu"); //设置标题
 
         setSize(WIDTH,HEIGTH);
         setLocationRelativeTo(null); // Center the window.
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
+        this.acts = acts;
 
         addLabel();
         addQueenButton(chessboard,chess,listener,size);

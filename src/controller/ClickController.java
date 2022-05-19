@@ -60,6 +60,14 @@ public class ClickController {
                 else {
                     chessboard.swapChessComponents(first, chessComponent);//正常行棋
                 }
+                first.setLastMove(true);
+                for(int i = 0;i < 8;i++){
+                    for(int j = 0;j < 8;j++){
+                        if(!first.getChessboardPoint().equals(new ChessboardPoint(i,j))){
+                            chessComponents[i][j].setLastMove(false);
+                        }
+                    }
+                }
                 first.setSelected(false);
                 first = null;
                 boolean[] dangerKing = {false, false};//用于判断两方王是否处于被将军状态
@@ -104,11 +112,32 @@ public class ClickController {
                     chessboard.swapColor();
                 }
                 else{
+                    ChessColor AIColor = chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.WHITE:ChessColor.BLACK;
                     switch (Chessboard.AILevel){//AI分级，算法还待完善
-                        case 1:
+                        case 1://就近行棋
+                            boolean hasChess = false;
+                            int i1 = 0;
+                            int j1 = 0;
+                            for(int i = 0;i < 8;i++) {
+                                for (int j = 0; j < 8; j++) {
+                                    if (chessComponents[i][j].getChessColor() == AIColor && !chessComponents[i][j].canMoveTo(chessComponents).isEmpty()) {
+                                        i1 = i;
+                                        j1 = j;
+                                        hasChess = true;
+                                    }
+                                    if (hasChess)
+                                        break;
+                                }
+                                if(hasChess)
+                                    break;
+                            }
+                            ChessComponent chess1 = chessComponents[i1][j1];
+                            ChessboardPoint tP = chess1.canMoveTo(chessComponents).get(0);
+                            ChessComponent tC = chessComponents[tP.getX()][tP.getY()];
+                            chessboard.swapChessComponents(chess1, tC);
+                            chess1.setHasMoved(true);
                             break;
                         case 2://随机行棋
-                            ChessColor AIColor = chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.WHITE:ChessColor.BLACK;
                             List<ChessComponent> chessComponentList = new ArrayList<>();
                             for(int i = 0;i < 8;i++)
                                 for(int j = 0;j < 8;j++)
@@ -118,7 +147,13 @@ public class ClickController {
                             ChessComponent chess = chessComponentList.get(r.nextInt(chessComponentList.size()));
                             ChessboardPoint targetPoint = chess.canMoveTo(chessComponents).get(r.nextInt(chess.canMoveTo(chessComponents).size()));
                             ChessComponent targetChess = chessComponents[targetPoint.getX()][targetPoint.getY()];
-                            chessboard.swapChessComponents(chess, targetChess);
+                            if(chess.getChessColor() == targetChess.getChessColor()){
+                                chessboard.castleSwap(chess, targetChess);//王车易位
+                            }
+                            else {
+                                chessboard.swapChessComponents(chess, targetChess);//正常行棋
+                            }
+                            chess.setHasMoved(true);
                             break;
                         case 3://打算写贪心
                             break;
