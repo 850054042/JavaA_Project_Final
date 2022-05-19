@@ -70,7 +70,7 @@ public class PrepareExit extends JFrame {
     }
 
     private void addBackToMenuButton() {
-        JButton button = new JButton("回到主菜单");
+        JButton button = new JButton("退出游戏");
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 480);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
@@ -82,7 +82,7 @@ public class PrepareExit extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
                 new NoteRecord(360,760);
-                System.out.println("Click BackToMenu");
+                System.out.println("Click exit");
             }
         });
     }
