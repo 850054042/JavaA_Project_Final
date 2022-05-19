@@ -5,6 +5,8 @@ package view;
 import controller.GameController;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -99,7 +101,6 @@ public class Menu extends JFrame {
             System.exit(1);
         });
     }
-
 
 
 //    private void setBackground(){
