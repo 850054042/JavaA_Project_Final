@@ -6,6 +6,7 @@ import model.ChessComponent;
 import model.KingChessComponent;
 import view.Chessboard;
 import view.ChessboardPoint;
+import view.MusicPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ClickController {
         this.chessboard = chessboard;
     }
 
-    public void onClick(ChessComponent chessComponent) {
+    public void onClick(ChessComponent chessComponent) throws InterruptedException {
         if (first == null) {
             if (handleFirst(chessComponent)) {
                 chessComponent.setSelected(true);
@@ -113,6 +114,11 @@ public class ClickController {
                 }
                 else{
                     ChessColor AIColor = chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.WHITE:ChessColor.BLACK;
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     switch (Chessboard.AILevel){//AI分级，算法还待完善
                         case 1://就近行棋
                             boolean hasChess = false;
@@ -158,6 +164,8 @@ public class ClickController {
                         case 3://打算写贪心
                             break;
                     }
+                    MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+                    move.start();
                 }
             }
         }
