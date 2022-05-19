@@ -31,7 +31,7 @@ public class ChessGameFrame extends JFrame {
         addChessboard();
         addLabel();
         addHelloButton();
-        addRetractButton(); //悔棋
+        addRetractButton();
         addRestartButton();
         addReturnButton();
     }
