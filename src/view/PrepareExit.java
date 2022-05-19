@@ -82,7 +82,7 @@ public class PrepareExit extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
                 new NoteRecord(360,760);
-                System.out.println("Click exit");
+                System.out.println("Click Exit");
             }
         });
     }
