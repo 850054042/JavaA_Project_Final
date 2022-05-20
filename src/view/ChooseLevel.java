@@ -21,6 +21,7 @@ public class ChooseLevel extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
 
+        setBackground();
         addLabel();
         addEasyButton();
         addNormalButton();
@@ -109,16 +110,13 @@ public class ChooseLevel extends JFrame {
         });
     }
 
-        /*private void addRestartButton() {
-            JButton button = new JButton("Restart");
-            button.setLocation(HEIGTH/10, HEIGTH / 10 + 360);
-            button.setFont(new Font("TimesNewRoman", Font.BOLD, 20));
-            button.setSize(200, 60);
-            button.setVisible(true);
-            add(button);
-
-            button.addActionListener(e -> {
-                System.out.println("Click restart");
-            });
-        }*/
+    private void setBackground(){
+        JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
+        imPanel.setOpaque(false);//将内容面板设为透明
+        ImageIcon icon=new ImageIcon("D://文件//12111801.jpg");//背景图
+        JLabel label = new JLabel(icon);//往一个标签中加入图片
+        label.setBounds(0, 0, WIDTH, HEIGTH);//设置标签位置大小，记得大小要和窗口一样大
+        icon.setImage(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));//图片自适应窗口大小
+        getLayeredPane().add(label,new Integer(Integer.MIN_VALUE));
+    }
 }

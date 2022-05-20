@@ -136,8 +136,8 @@ public class Chessboard extends JComponent {
             chess2.repaint();
             chessSwap2.repaint();
         }
-//        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
-//        move.start();
+        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+        move.start();
     }
 
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
@@ -184,8 +184,8 @@ public class Chessboard extends JComponent {
         actions.push(acts);
         chess1.repaint();
         chess2.repaint();
-//        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
-//        move.start();
+        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+        move.start();
     }
 
     public void undo(){

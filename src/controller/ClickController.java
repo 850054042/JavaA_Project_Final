@@ -129,8 +129,8 @@ public class ClickController {
                         case 3://打算写贪心
                             break;
                     }
-//                    MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
-//                    move.start();
+                    MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+                    move.start();
                 }
             }
         }
