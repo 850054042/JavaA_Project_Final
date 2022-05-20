@@ -11,7 +11,8 @@ public class NoteRecord extends JFrame{
     private final int WIDTH;
     private final int HEIGTH;
     private GameController gameController;
-    public NoteRecord(int width, int height) {
+    private ChessGameFrame chessGameFrame;
+    public NoteRecord(int width, int height, ChessGameFrame chessGameFrame) {
         setTitle("记录存档"); //设置标题
         this.WIDTH = width;
         this.HEIGTH = height;
@@ -41,6 +42,7 @@ public class NoteRecord extends JFrame{
                 NoteRecord.this.dispose();
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordOne");
+                chessGameFrame.dispose();
             }
         });
     }
@@ -57,6 +59,7 @@ public class NoteRecord extends JFrame{
                 NoteRecord.this.dispose();
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordTwo");
+                chessGameFrame.dispose();
             }
         });
     }
@@ -73,6 +76,7 @@ public class NoteRecord extends JFrame{
                 NoteRecord.this.dispose();
                 //new ChooseRecord(360,760);
                 System.out.println("Click ChooseRecordThree");
+                chessGameFrame.dispose();
             }
         });
     }
@@ -89,7 +93,7 @@ public class NoteRecord extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 NoteRecord.this.dispose();
-                PrepareExit prepareExit = new PrepareExit(1000,760);
+                PrepareExit prepareExit = new PrepareExit(1000,760,chessGameFrame);
                 prepareExit.setVisible(true);
                 System.out.println("Click Return");
             }

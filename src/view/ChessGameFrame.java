@@ -36,6 +36,9 @@ public class ChessGameFrame extends JFrame {
         addRestartButton();
         addReturnButton();
     }
+    private void addBackground(){
+
+    }
 
     private void addChessboard() {
         Chessboard chessboard = new Chessboard(CHESSBOARD_SIZE, CHESSBOARD_SIZE);
@@ -99,8 +102,8 @@ public class ChessGameFrame extends JFrame {
 
         button.addActionListener(e -> {
             System.out.println("Click Return");
-            ChessGameFrame.this.dispose();
-            PrepareExit prepareExit  = new PrepareExit(1000,760);
+            ChessGameFrame.this.setVisible(false);
+            PrepareExit prepareExit  = new PrepareExit(1000,760, this);
             prepareExit.setVisible(true);
         });
     }

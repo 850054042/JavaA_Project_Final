@@ -12,11 +12,13 @@ import java.awt.event.ActionListener;
 public class PrepareExit extends JFrame {
     private final int WIDTH;
     private final int HEIGTH;
+    ChessGameFrame chessGameFrame;
     private GameController gameController;
-    public PrepareExit(int width, int height) {
+    public PrepareExit(int width, int height, ChessGameFrame chessGameFrame) {
         setTitle("Exit"); //设置标题
         this.WIDTH = width;
         this.HEIGTH = height;
+        this.chessGameFrame = chessGameFrame;
 
         setSize(width, height);
         setLocationRelativeTo(null);
@@ -41,8 +43,8 @@ public class PrepareExit extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
-                new ChooseGame(360,760);
                 System.out.println("Click ReturnToGame");
+                chessGameFrame.setVisible(true);
             }
         });
     }
@@ -82,7 +84,8 @@ public class PrepareExit extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
-                new NoteRecord(360,760);
+                new NoteRecord(360,760,chessGameFrame);
+                chessGameFrame.dispose();
                 System.out.println("Click Exit");
             }
         });
