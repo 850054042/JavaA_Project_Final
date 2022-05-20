@@ -36,6 +36,11 @@ public class Chessboard extends JComponent {
     public static int gameMode = 0;//0 for pvp, 1 for pvc
     public static int AILevel = 0;
     public Stack<Acts> actions = new Stack<>();
+    private JLabel label;
+
+    public void setLabel(JLabel label){
+        this.label = label;
+    }
 
     public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
@@ -328,6 +333,12 @@ public class Chessboard extends JComponent {
 
     public void swapColor() {
         currentColor = currentColor == ChessColor.BLACK ? ChessColor.WHITE : ChessColor.BLACK;
+        if(currentColor == ChessColor.BLACK) {
+            label.setText("黑方回合");
+        }
+        else{
+            label.setText("白方回合");
+        }
     }
 
     private void initRookOnBoard(int row, int col, ChessColor color) {
