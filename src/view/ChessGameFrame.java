@@ -45,10 +45,11 @@ public class ChessGameFrame extends JFrame {
     }
 
     private void addLabel() {
-        JLabel statusLabel = new JLabel("注意");
+        JLabel statusLabel = new JLabel("白方回合");
         statusLabel.setLocation(HEIGTH - 20, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        chessboard.setLabel(statusLabel);
         add(statusLabel);
     }
 
