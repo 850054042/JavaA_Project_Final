@@ -88,7 +88,8 @@ public class NoteRecord extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 NoteRecord.this.dispose();
-                new PrepareExit(1000,760);
+                PrepareExit prepareExit = new PrepareExit(1000,760);
+                prepareExit.setVisible(true);
                 System.out.println("Click Return");
             }
         });
