@@ -71,54 +71,17 @@ public class ClickController {
                 }
                 first.setSelected(false);
                 first = null;
-                boolean[] dangerKing = {false, false};//用于判断两方王是否处于被将军状态
-                int[] posKing1 = new int[2],posKing2 = new int[2];//分别存储两个王
-                boolean has1 = false;
-                for(int i = 0;i < 8;i++){
-                    for(int j = 0;j < 8;j++){
-                        ChessComponent chess = chessComponents[i][j];
-                        if(chess instanceof KingChessComponent){
-                            if(has1){
-                                posKing2[0] = i;
-                                posKing2[1] = j;
-                            }
-                            else{
-                                posKing1[0] = i;
-                                posKing1[1] = j;
-                                has1 = true;
-                            }
-                        }
-                        int chesscolor = chess.getChessColor() == ChessColor.BLACK ? 1:0;
-                        for(ChessboardPoint pos : chess.canMoveTo(chessComponents)){
-                            if(chessComponents[pos.getX()][pos.getY()] instanceof KingChessComponent){
-                                dangerKing[chesscolor] = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if(chessComponents[posKing1[0]][posKing1[1]].getChessColor() == ChessColor.BLACK){
-                    chessComponents[posKing1[0]][posKing1[1]].setCanBeMovedTo(dangerKing[0]);
-                    chessComponents[posKing1[0]][posKing1[1]].repaint();
-                    chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[1]);
-                    chessComponents[posKing2[0]][posKing2[1]].repaint();
-                }
-                else{
-                    chessComponents[posKing1[0]][posKing1[1]].setCanBeMovedTo(dangerKing[1]);
-                    chessComponents[posKing1[0]][posKing1[1]].repaint();
-                    chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[0]);
-                    chessComponents[posKing2[0]][posKing2[1]].repaint();
-                }//被将军时的预警
+                chessboard.showDangerKing();
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 if(Chessboard.gameMode == 0) {//区分人人对战和人机对战
                     chessboard.swapColor();
                 }
                 else{
                     ChessColor AIColor = chessboard.getCurrentColor() == ChessColor.BLACK ? ChessColor.WHITE:ChessColor.BLACK;
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     switch (Chessboard.AILevel){//AI分级，算法还待完善
                         case 1://就近行棋
                             boolean hasChess = false;
@@ -164,8 +127,8 @@ public class ClickController {
                         case 3://打算写贪心
                             break;
                     }
-                    MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
-                    move.start();
+//                    MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+//                    move.start();
                 }
             }
         }

@@ -32,7 +32,8 @@ public class Chessboard extends JComponent {
     //all chessComponents in this chessboard are shared only one model controller
     private final ClickController clickController = new ClickController(this);
     private final int CHESS_SIZE;
-    public static int gameMode = 0;
+    private boolean AIundo = false;
+    public static int gameMode = 0;//0 for pvp, 1 for pvc
     public static int AILevel = 0;
     public Stack<Acts> actions = new Stack<>();
 
@@ -95,15 +96,43 @@ public class Chessboard extends JComponent {
         acts.setTargetPoint(new ChessboardPoint(row, col2));
         actions.push(acts);
         if(col1 > col2){
-            swapChessComponents(chess1,chessComponents[row][col1 - 2]);
-            swapChessComponents(chess2,chessComponents[row][col1 - 1]);
+            ChessComponent chessSwap1 = chessComponents[row][col1 - 2];
+            chess1.swapLocation(chessSwap1);
+            int row1 = chess1.getChessboardPoint().getX(), co1 = chess1.getChessboardPoint().getY();
+            chessComponents[row1][co1] = chess1;
+            int row2 = chessSwap1.getChessboardPoint().getX(), co2 = chessSwap1.getChessboardPoint().getY();
+            chessComponents[row2][co2] = chessSwap1;
+            chess1.repaint();
+            chessSwap1.repaint();
+            ChessComponent chessSwap2 = chessComponents[row][col1 - 1];
+            chess2.swapLocation(chessSwap2);
+            row1 = chess2.getChessboardPoint().getX(); co1 = chess2.getChessboardPoint().getY();
+            chessComponents[row1][co1] = chess2;
+            row2 = chessSwap2.getChessboardPoint().getX(); co2 = chessSwap2.getChessboardPoint().getY();
+            chessComponents[row2][co2] = chessSwap2;
+            chess2.repaint();
+            chessSwap2.repaint();
         }
         else{
-            swapChessComponents(chess1,chessComponents[row][col1 + 2]);
-            swapChessComponents(chess2,chessComponents[row][col1 + 1]);
+            ChessComponent chessSwap1 = chessComponents[row][col1 + 2];
+            chess1.swapLocation(chessSwap1);
+            int row1 = chess1.getChessboardPoint().getX(), co1 = chess1.getChessboardPoint().getY();
+            chessComponents[row1][co1] = chess1;
+            int row2 = chessSwap1.getChessboardPoint().getX(), co2 = chessSwap1.getChessboardPoint().getY();
+            chessComponents[row2][co2] = chessSwap1;
+            chess1.repaint();
+            chessSwap1.repaint();
+            ChessComponent chessSwap2 = chessComponents[row][col1 + 1];
+            chess2.swapLocation(chessSwap2);
+            row1 = chess2.getChessboardPoint().getX(); co1 = chess2.getChessboardPoint().getY();
+            chessComponents[row1][co1] = chess2;
+            row2 = chessSwap2.getChessboardPoint().getX(); co2 = chessSwap2.getChessboardPoint().getY();
+            chessComponents[row2][co2] = chessSwap2;
+            chess2.repaint();
+            chessSwap2.repaint();
         }
-        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
-        move.start();
+//        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+//        move.start();
     }
 
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
@@ -150,8 +179,8 @@ public class Chessboard extends JComponent {
         actions.push(acts);
         chess1.repaint();
         chess2.repaint();
-        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
-        move.start();
+//        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+//        move.start();
     }
 
     public void undo(){
@@ -162,18 +191,23 @@ public class Chessboard extends JComponent {
         Acts acts = actions.pop();
         ChessComponent chess1 = chessComponents[acts.getTargetPoint().getX()][acts.getTargetPoint().getY()];
         ChessComponent chess2 = chessComponents[acts.getStartingPoint().getX()][acts.getStartingPoint().getY()];
+        chess1.setHasMoved(false);
+        chess1.setLastMove(false);
         if(acts.isCastle()){
             int row = acts.getStartingPoint().getX();
             int cl1 = acts.getStartingPoint().getY();
             int cl2 = acts.getTargetPoint().getY();
             if(cl1 < cl2){
                 chess1 = chessComponents[row][6];
+                chess1.setHasMoved(false);
                 chess2 = chessComponents[row][4];
                 chess1.swapLocation(chess2);
                 int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
                 int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
                 chessComponents[row1][col1] = chess1;
                 chessComponents[row2][col2] = chess2;
+                chess1.repaint();
+                chess2.repaint();
                 chess1 = chessComponents[row][5];
                 chess2 = chessComponents[row][7];
                 chess1.swapLocation(chess2);
@@ -181,15 +215,20 @@ public class Chessboard extends JComponent {
                 row2 = chess2.getChessboardPoint().getX(); col2 = chess2.getChessboardPoint().getY();
                 chessComponents[row1][col1] = chess1;
                 chessComponents[row2][col2] = chess2;
+                chess1.repaint();
+                chess2.repaint();
             }
             else{
                 chess1 = chessComponents[row][2];
+                chess1.setHasMoved(false);
                 chess2 = chessComponents[row][4];
                 chess1.swapLocation(chess2);
                 int row1 = chess1.getChessboardPoint().getX(), col1 = chess1.getChessboardPoint().getY();
                 int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
                 chessComponents[row1][col1] = chess1;
                 chessComponents[row2][col2] = chess2;
+                chess1.repaint();
+                chess2.repaint();
                 chess1 = chessComponents[row][3];
                 chess2 = chessComponents[row][0];
                 chess1.swapLocation(chess2);
@@ -197,6 +236,8 @@ public class Chessboard extends JComponent {
                 row2 = chess2.getChessboardPoint().getX(); col2 = chess2.getChessboardPoint().getY();
                 chessComponents[row1][col1] = chess1;
                 chessComponents[row2][col2] = chess2;
+                chess1.repaint();
+                chess2.repaint();
             }
             swapColor();
             return;
@@ -221,7 +262,60 @@ public class Chessboard extends JComponent {
         acts.getBeEaten().repaint();
         chessComponents[row3][col3].repaint();
         chess1.repaint();
-        swapColor();
+        if(gameMode == 0) {
+            swapColor();
+        }
+        else{
+            if(!AIundo){
+                AIundo = true;
+                undo();
+            }
+            else{
+                AIundo = false;
+            }
+        }
+        showDangerKing();
+    }
+
+    public void showDangerKing(){
+        boolean[] dangerKing = {false, false};//用于判断两方王是否处于被将军状态
+        int[] posKing1 = new int[2],posKing2 = new int[2];//分别存储两个王
+        boolean has1 = false;
+        for(int i = 0;i < 8;i++){
+            for(int j = 0;j < 8;j++){
+                ChessComponent chess = chessComponents[i][j];
+                if(chess instanceof KingChessComponent){
+                    if(has1){
+                        posKing2[0] = i;
+                        posKing2[1] = j;
+                    }
+                    else{
+                        posKing1[0] = i;
+                        posKing1[1] = j;
+                        has1 = true;
+                    }
+                }
+                int chesscolor = chess.getChessColor() == ChessColor.BLACK ? 1:0;
+                for(ChessboardPoint pos : chess.canMoveTo(chessComponents)){
+                    if(chessComponents[pos.getX()][pos.getY()] instanceof KingChessComponent){
+                        dangerKing[chesscolor] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if(chessComponents[posKing1[0]][posKing1[1]].getChessColor() == ChessColor.BLACK){
+            chessComponents[posKing1[0]][posKing1[1]].setCanBeMovedTo(dangerKing[0]);
+            chessComponents[posKing1[0]][posKing1[1]].repaint();
+            chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[1]);
+            chessComponents[posKing2[0]][posKing2[1]].repaint();
+        }
+        else{
+            chessComponents[posKing1[0]][posKing1[1]].setCanBeMovedTo(dangerKing[1]);
+            chessComponents[posKing1[0]][posKing1[1]].repaint();
+            chessComponents[posKing2[0]][posKing2[1]].setCanBeMovedTo(dangerKing[0]);
+            chessComponents[posKing2[0]][posKing2[1]].repaint();
+        }//被将军时的预警
     }
 
     public void initiateEmptyChessboard() {
