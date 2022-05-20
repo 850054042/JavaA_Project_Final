@@ -114,6 +114,9 @@ public class KingChessComponent extends ChessComponent {
                 }
             }
         }
+        else{
+            castleLeft = false;
+        }
         if(chessboard[x][7] instanceof RookChessComponent) {
             if (chessboard[x][7].isHasMoved())
                 castleRight = false;//右侧判断，右车不能动过
@@ -136,6 +139,9 @@ public class KingChessComponent extends ChessComponent {
                     }
                 }
             }
+        }
+        else{
+            castleRight = false;
         }
         if(castleLeft)
             chessboardPoints.add(new ChessboardPoint(x,0));

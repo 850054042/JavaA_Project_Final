@@ -32,6 +32,7 @@ public class ClickController {
                     chessComponent1.setCanBeMovedTo(true);
                     chessComponent1.repaint();
                 }
+                chessboard.showDangerKing();
             }
         } else {
             if (first == chessComponent) { // 再次点击取消选取
@@ -45,6 +46,7 @@ public class ClickController {
                     chessComponent1.setCanBeMovedTo(false);
                     chessComponent1.repaint();
                 }
+                chessboard.showDangerKing();
             } else if (handleSecond(chessComponent)) {
                 //repaint in swap chess method.
 
