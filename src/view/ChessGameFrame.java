@@ -51,6 +51,7 @@ public class ChessGameFrame extends JFrame {
         setBackground();
         chessboard.setLocation(HEIGTH / 10, HEIGTH / 10);
         this.chessboard = chessboard;
+        gameController = new GameController(chessboard);
         add(chessboard);
         chessboard.setChessGameFrame(this);
         addLabel();

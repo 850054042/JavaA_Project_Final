@@ -38,6 +38,7 @@ public class Chessboard extends JComponent {
     public Stack<Acts> actions = new Stack<>();
     private JLabel label;
     private ChessGameFrame chessGameFrame;
+    private boolean loaded = false;
 
     public void setChessGameFrame(ChessGameFrame chessGameFrame) {
         this.chessGameFrame = chessGameFrame;
@@ -55,26 +56,27 @@ public class Chessboard extends JComponent {
 
         initiateEmptyChessboard();
 
-        // FIXME: Initialize chessboard for testing only.
-        initRookOnBoard(0, 0, ChessColor.BLACK);
-        initRookOnBoard(0, 7, ChessColor.BLACK);
-        initRookOnBoard(7, 0, ChessColor.WHITE);
-        initRookOnBoard(7, 7, ChessColor.WHITE);
-        initBishopOnBoard(0, 2, ChessColor.BLACK);
-        initBishopOnBoard(0, 5, ChessColor.BLACK);
-        initBishopOnBoard(7, 2, ChessColor.WHITE);
-        initBishopOnBoard(7, 5, ChessColor.WHITE);
-        initQueenOnBoard(0,3,ChessColor.BLACK);
-        initQueenOnBoard(7,3,ChessColor.WHITE);
-        initKnightOnBoard(0,1,ChessColor.BLACK);
-        initKnightOnBoard(0,6,ChessColor.BLACK);
-        initKnightOnBoard(7,1,ChessColor.WHITE);
-        initKnightOnBoard(7,6,ChessColor.WHITE);
-        initKingOnBoard(0,4,ChessColor.BLACK);
-        initKingOnBoard(7,4,ChessColor.WHITE);
-        for(int i = 0;i < 8;i++){
-            initPawnOnBoard(1,i,ChessColor.BLACK);
-            initPawnOnBoard(6,i,ChessColor.WHITE);
+        if(!loaded) {
+            initRookOnBoard(0, 0, ChessColor.BLACK);
+            initRookOnBoard(0, 7, ChessColor.BLACK);
+            initRookOnBoard(7, 0, ChessColor.WHITE);
+            initRookOnBoard(7, 7, ChessColor.WHITE);
+            initBishopOnBoard(0, 2, ChessColor.BLACK);
+            initBishopOnBoard(0, 5, ChessColor.BLACK);
+            initBishopOnBoard(7, 2, ChessColor.WHITE);
+            initBishopOnBoard(7, 5, ChessColor.WHITE);
+            initQueenOnBoard(0, 3, ChessColor.BLACK);
+            initQueenOnBoard(7, 3, ChessColor.WHITE);
+            initKnightOnBoard(0, 1, ChessColor.BLACK);
+            initKnightOnBoard(0, 6, ChessColor.BLACK);
+            initKnightOnBoard(7, 1, ChessColor.WHITE);
+            initKnightOnBoard(7, 6, ChessColor.WHITE);
+            initKingOnBoard(0, 4, ChessColor.BLACK);
+            initKingOnBoard(7, 4, ChessColor.WHITE);
+            for (int i = 0; i < 8; i++) {
+                initPawnOnBoard(1, i, ChessColor.BLACK);
+                initPawnOnBoard(6, i, ChessColor.WHITE);
+            }
         }
     }
 
@@ -462,5 +464,6 @@ public class Chessboard extends JComponent {
             }
         }
         currentColor = chessData.get(8).charAt(0) == 'w' ? ChessColor.WHITE:ChessColor.BLACK;
+        loaded = true;
     }
 }
