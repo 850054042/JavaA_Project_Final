@@ -27,8 +27,8 @@ public class PrepareExit extends JFrame {
 
         setBackground();
         addReturnGameButton();
-        addLoadButton();
         addChangeStyleButton();
+        addRecordButton();
         addBackToMenuButton();
     }
 
@@ -49,31 +49,36 @@ public class PrepareExit extends JFrame {
         });
     }
 
-    private void addLoadButton() {
-        JButton button = new JButton("加载存档");
+    private void addChangeStyleButton() {
+        JButton button = new JButton("改变风格");
         button.setLocation(HEIGTH / 10, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
 
-        button.addActionListener(e -> {
-            System.out.println("Click Load");
-            String path = JOptionPane.showInputDialog(this,"Input Path here");
-            gameController.loadGameFromFile(path);
+    }
+
+    private void addRecordButton() {
+        JButton button = new JButton("记录存档");
+        button.setLocation(HEIGTH/10, HEIGTH / 10 + 380);
+        button.setFont(new Font("黑体", Font.BOLD, 20));
+        button.setSize(200, 60);
+        button.setVisible(true);
+        add(button);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PrepareExit.this.dispose();
+                new NoteRecord(1000,760,chessGameFrame);
+                chessGameFrame.dispose();
+                System.out.println("Click SetRecord");
+            }
         });
     }
 
-    private void addChangeStyleButton() {
-        JButton button = new JButton("改变风格");
-        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 380);
-        button.setSize(200, 60);
-        button.setFont(new Font("黑体", Font.BOLD, 20));
-        add(button);
-
-    }
-
     private void addBackToMenuButton() {
-        JButton button = new JButton("退出游戏");
+        JButton button = new JButton("返回主菜单");
         button.setLocation(HEIGTH/10, HEIGTH / 10 + 480);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
@@ -84,7 +89,8 @@ public class PrepareExit extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
-                new NoteRecord(360,760,chessGameFrame);
+                Menu menu = new Menu(1000,760);
+                menu.setVisible(true);
                 chessGameFrame.dispose();
                 System.out.println("Click Exit");
             }
@@ -94,7 +100,7 @@ public class PrepareExit extends JFrame {
     private void setBackground(){
         JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
         imPanel.setOpaque(false);//将内容面板设为透明
-        ImageIcon icon=new ImageIcon("D://文件//12111801.jpg");//背景图
+        ImageIcon icon=new ImageIcon("./images/1530971282b420d77bdfb6444d854f952fe31f0d1e.jpeg");//背景图
         JLabel label = new JLabel(icon);//往一个标签中加入图片
         label.setBounds(0, 0, WIDTH, HEIGTH);//设置标签位置大小，记得大小要和窗口一样大
         icon.setImage(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));//图片自适应窗口大小
