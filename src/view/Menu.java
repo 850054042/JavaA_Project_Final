@@ -56,6 +56,7 @@ public class Menu extends JFrame {
     private void addChangeStyleButton() {
         button2.addActionListener(e -> {
             System.out.println("mouseListener");
+            path = resetPath(path);
             setBackground();
             repaint();
         });
@@ -102,7 +103,6 @@ public class Menu extends JFrame {
         System.out.println("setBackground");
         JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
         imPanel.setOpaque(false);//将内容面板设为透明
-        path = resetPath(path);
         icon1=new ImageIcon(path);//背景图
         label.setIcon(icon1);//往一个标签中加入图片
         label.setBounds(0, 0, WIDTH, HEIGTH);//设置标签位置大小，记得大小要和窗口一样大

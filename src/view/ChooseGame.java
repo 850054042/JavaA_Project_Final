@@ -53,13 +53,10 @@ public class ChooseGame extends JFrame{
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseGame.this.dispose();
-                new ChooseRecord(1000,760);
-                System.out.println("Click ChooseRecord");
-            }
+        button.addActionListener(e -> {
+            ChooseGame.this.dispose();
+            new ChooseRecord(1000,760);
+            System.out.println("Click ChooseRecord");
         });
     }
 

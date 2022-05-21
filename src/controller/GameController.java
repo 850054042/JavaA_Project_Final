@@ -1,5 +1,6 @@
 package controller;
 
+import view.ChessGameFrame;
 import view.Chessboard;
 
 import java.io.IOException;
@@ -18,6 +19,9 @@ public class GameController {
         try {
             List<String> chessData = Files.readAllLines(Path.of(path));
             chessboard.loadGame(chessData);
+            System.out.println("loading......");
+            ChessGameFrame chessGameFrame = new ChessGameFrame(chessboard);
+            chessGameFrame.setVisible(true);
             return chessData;
         } catch (IOException e) {
             e.printStackTrace();

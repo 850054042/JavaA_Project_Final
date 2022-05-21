@@ -6,16 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class NoteRecord extends JFrame{
     private final int WIDTH;
     private final int HEIGTH;
     private GameController gameController;
     private ChessGameFrame chessGameFrame;
+    private Chessboard chessboard;
     public NoteRecord(int width, int height, ChessGameFrame chessGameFrame) {
         setTitle("记录存档"); //设置标题
         this.WIDTH = width;
         this.HEIGTH = height;
+        chessboard = chessGameFrame.getChessboard();
 
         setVisible(true);
         setSize(width, height);
@@ -36,15 +41,19 @@ public class NoteRecord extends JFrame{
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NoteRecord.this.dispose();
-                Menu menu = new Menu(1000,760);
-                menu.setVisible(true);
-                System.out.println("Click ChooseRecordOne");
-                chessGameFrame.dispose();
+        button.addActionListener(e -> {
+            NoteRecord.this.dispose();
+            Menu menu = new Menu(1000,760);
+            menu.setVisible(true);
+            System.out.println("Click ChooseRecordOne");
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("Save1.txt"));
+                writer.write(chessboard.getChessboardGraph());
+                writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
+            chessGameFrame.dispose();
         });
     }
 
@@ -54,15 +63,19 @@ public class NoteRecord extends JFrame{
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NoteRecord.this.dispose();
-                Menu menu = new Menu(1000,760);
-                menu.setVisible(true);
-                System.out.println("Click ChooseRecordTwo");
-                chessGameFrame.dispose();
+        button.addActionListener(e -> {
+            NoteRecord.this.dispose();
+            Menu menu = new Menu(1000,760);
+            menu.setVisible(true);
+            System.out.println("Click ChooseRecordTwo");
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("Save2.txt"));
+                writer.write(chessboard.getChessboardGraph());
+                writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
+            chessGameFrame.dispose();
         });
     }
 
@@ -72,15 +85,19 @@ public class NoteRecord extends JFrame{
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NoteRecord.this.dispose();
-                Menu menu = new Menu(1000,760);
-                menu.setVisible(true);
-                System.out.println("Click ChooseRecordThree");
-                chessGameFrame.dispose();
+        button.addActionListener(e -> {
+            NoteRecord.this.dispose();
+            Menu menu = new Menu(1000,760);
+            menu.setVisible(true);
+            System.out.println("Click ChooseRecordThree");
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("Save3.txt"));
+                writer.write(chessboard.getChessboardGraph());
+                writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
+            chessGameFrame.dispose();
         });
     }
 
@@ -92,14 +109,11 @@ public class NoteRecord extends JFrame{
         button.setVisible(true);
         add(button);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                NoteRecord.this.dispose();
-                PrepareExit prepareExit = new PrepareExit(1000,760,chessGameFrame);
-                prepareExit.setVisible(true);
-                System.out.println("Click Return");
-            }
+        button.addActionListener(e -> {
+            NoteRecord.this.dispose();
+            PrepareExit prepareExit = new PrepareExit(1000,760,chessGameFrame);
+            prepareExit.setVisible(true);
+            System.out.println("Click Return");
         });
     }
 

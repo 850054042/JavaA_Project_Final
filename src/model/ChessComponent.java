@@ -5,7 +5,6 @@ import controller.ClickController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.List;
@@ -62,6 +61,17 @@ public abstract class ChessComponent extends JComponent {
 
     public void setLastMove(boolean lastMove) {
         isLastMove = lastMove;
+    }
+
+    @Override
+    public String getName() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        return sb.toString();
+    }
+
+    public void setName(char name) {
+        this.name = name;
     }
 
     public ChessboardPoint getChessboardPoint() {

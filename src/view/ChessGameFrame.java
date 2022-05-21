@@ -36,8 +36,32 @@ public class ChessGameFrame extends JFrame {
         addRestartButton();
         addReturnButton();
     }
-    private void addBackground(){
 
+    public ChessGameFrame(Chessboard chessboard){
+        setTitle("Battle!"); //设置标题
+        this.WIDTH = 1000;
+        this.HEIGTH = 760;
+        this.CHESSBOARD_SIZE = HEIGTH * 4 / 5;
+
+        setSize(WIDTH, HEIGTH);
+        setLocationRelativeTo(null); // Center the window.
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
+        setLayout(null);
+
+        setBackground();
+        chessboard.setLocation(HEIGTH / 10, HEIGTH / 10);
+        this.chessboard = chessboard;
+        add(chessboard);
+        chessboard.setChessGameFrame(this);
+        addLabel();
+        addHelloButton();
+        addRetractButton();
+        addRestartButton();
+        addReturnButton();
+    }
+
+    public Chessboard getChessboard() {
+        return chessboard;
     }
 
     private void addChessboard() {
@@ -46,6 +70,7 @@ public class ChessGameFrame extends JFrame {
         chessboard.setLocation(HEIGTH / 10, HEIGTH / 10);
         this.chessboard = chessboard;
         add(chessboard);
+        chessboard.setChessGameFrame(this);
     }
 
     private void addLabel() {

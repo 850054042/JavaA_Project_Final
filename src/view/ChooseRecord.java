@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ChooseRecord extends JFrame{
     private final int WIDTH;
@@ -36,13 +39,12 @@ public class ChooseRecord extends JFrame{
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
-                //new ChooseRecord(360,760);
-                System.out.println("Click ChooseRecordOne");
-            }
+        button.addActionListener(e -> {
+            GameController gameController = new GameController(new Chessboard(76 * 8, 76 * 8));
+            gameController.loadGameFromFile("Save1.txt");
+            ChooseRecord.this.dispose();
+            //new ChooseRecord(360,760);
+            System.out.println("Click ChooseRecordOne");
         });
     }
 
@@ -52,13 +54,10 @@ public class ChooseRecord extends JFrame{
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
-                //new ChooseRecord(360,760);
-                System.out.println("Click ChooseRecordTwo");
-            }
+        button.addActionListener(e -> {
+            ChooseRecord.this.dispose();
+            //new ChooseRecord(360,760);
+            System.out.println("Click ChooseRecordTwo");
         });
     }
 
@@ -68,13 +67,10 @@ public class ChooseRecord extends JFrame{
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
-                //new ChooseRecord(360,760);
-                System.out.println("Click ChooseRecordThree");
-            }
+        button.addActionListener(e -> {
+            ChooseRecord.this.dispose();
+            //new ChooseRecord(360,760);
+            System.out.println("Click ChooseRecordThree");
         });
     }
 
@@ -86,13 +82,10 @@ public class ChooseRecord extends JFrame{
         button.setVisible(true);
         add(button);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseRecord.this.dispose();
-                new ChooseGame(1000,760);
-                System.out.println("Click ChooseRecordThree");
-            }
+        button.addActionListener(e -> {
+            ChooseRecord.this.dispose();
+            new ChooseGame(1000,760);
+            System.out.println("Click ChooseRecordThree");
         });
     }
 

@@ -37,6 +37,11 @@ public class Chessboard extends JComponent {
     public static int AILevel = 0;
     public Stack<Acts> actions = new Stack<>();
     private JLabel label;
+    private ChessGameFrame chessGameFrame;
+
+    public void setChessGameFrame(ChessGameFrame chessGameFrame) {
+        this.chessGameFrame = chessGameFrame;
+    }
 
     public void setLabel(JLabel label){
         this.label = label;
@@ -195,6 +200,10 @@ public class Chessboard extends JComponent {
         chess2.repaint();
         MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
         move.start();
+        if(result != 0) {
+            GameOver gameOver = new GameOver(chessGameFrame, result);
+            gameOver.setVisible(true);
+        }
     }
 
     public void undo(){
@@ -330,6 +339,22 @@ public class Chessboard extends JComponent {
         }//被将军时的预警
     }
 
+    public String getChessboardGraph() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0;i < 8;i++){
+            for(int j = 0;j < 8;j++){
+                sb.append(chessComponents[i][j].getName());
+            }
+            sb.append("\n");
+        }
+        if(currentColor == ChessColor.BLACK){
+            sb.append('b');
+        }else{
+            sb.append('w');
+        }
+        return sb.toString();
+    }
+
     public void initiateEmptyChessboard() {
         for (int i = 0; i < chessComponents.length; i++) {
             for (int j = 0; j < chessComponents[i].length; j++) {
@@ -397,6 +422,45 @@ public class Chessboard extends JComponent {
     }
 
     public void loadGame(List<String> chessData) {
-        chessData.forEach(System.out::println);
+        for(int i = 0;i < 8;i++){
+            for(int j = 0;j < 8;j++){
+                char c = chessData.get(i).charAt(j);
+                int row = i, col = j;
+                ChessColor color = Character.isUpperCase(c) ? ChessColor.BLACK:ChessColor.WHITE;
+                switch (c){
+                    case 'R':
+                    case 'r':
+                        chessComponents[i][j] = new RookChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
+                        break;
+                    case 'N':
+                    case 'n':
+                        chessComponents[i][j] = new KnightChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
+                        break;
+                    case 'B':
+                    case 'b':
+                        chessComponents[i][j] = new BishopChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
+                        break;
+                    case 'Q':
+                    case 'q':
+                        chessComponents[i][j] = new QueenChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
+                        break;
+                    case 'K':
+                    case 'k':
+                        chessComponents[i][j] = new KingChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
+                        break;
+                    case 'P':
+                    case 'p':
+                        chessComponents[i][j] = new PawnChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
+                        break;
+                    default:
+                        chessComponents[i][j] = new EmptySlotComponent(new ChessboardPoint(row, col), calculatePoint(row, col), clickController, CHESS_SIZE);
+                        break;
+                }
+                chessComponents[i][j].setName(c);
+                chessComponents[i][j].setVisible(true);
+                putChessOnBoard(chessComponents[i][j]);
+            }
+        }
+        currentColor = chessData.get(8).charAt(0) == 'w' ? ChessColor.WHITE:ChessColor.BLACK;
     }
 }
