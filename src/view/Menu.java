@@ -5,10 +5,9 @@ package view;
 import controller.GameController;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.applet.AudioClip;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Menu extends JFrame {
     //    public final Dimension FRAME_SIZE ;
@@ -66,6 +65,8 @@ public class Menu extends JFrame {
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
 
+        button.addActionListener(e -> {
+        });
     }
 
     private void addExitButton() {
@@ -85,10 +86,14 @@ public class Menu extends JFrame {
     private void setBackground(){
         JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
         imPanel.setOpaque(false);//将内容面板设为透明
-        ImageIcon icon=new ImageIcon("./images/1530971282b420d77bdfb6444d854f952fe31f0d1e.jpeg");//背景图
-        JLabel label = new JLabel(icon);//往一个标签中加入图片
+        ImageIcon icon1=new ImageIcon("./images/1.jpeg");//背景图
+        ImageIcon icon2=new ImageIcon("./images/2.webp");
+        ImageIcon currenticon=new ImageIcon();
+        JLabel label = new JLabel(icon1);//往一个标签中加入图片
         label.setBounds(0, 0, WIDTH, HEIGTH);//设置标签位置大小，记得大小要和窗口一样大
-        icon.setImage(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));//图片自适应窗口大小
+        icon1.setImage(icon1.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));//图片自适应窗口大小
         getLayeredPane().add(label,new Integer(Integer.MIN_VALUE));
+        label.repaint(0,0,label.getWidth(), label.getHeight());
+
     }
 }
