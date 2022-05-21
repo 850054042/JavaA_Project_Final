@@ -113,7 +113,7 @@ public class ChooseLevel extends JFrame {
     private void setBackground(){
         JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
         imPanel.setOpaque(false);//将内容面板设为透明
-        ImageIcon icon=new ImageIcon("./images/1.jpeg");//背景图
+        ImageIcon icon=Menu.icon1;//背景图
         JLabel label = new JLabel(icon);//往一个标签中加入图片
         label.setBounds(0, 0, WIDTH, HEIGTH);//设置标签位置大小，记得大小要和窗口一样大
         icon.setImage(icon.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));//图片自适应窗口大小
