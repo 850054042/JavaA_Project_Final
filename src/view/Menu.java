@@ -6,16 +6,19 @@ import controller.GameController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.applet.AudioClip;
 
 public class Menu extends JFrame {
     //    public final Dimension FRAME_SIZE ;
     private final int WIDTH;
     private final int HEIGTH;
+    private JLabel label;
     private GameController gameController;
+    JButton button1 = new JButton("开始游戏");
+    JButton button2 = new JButton("选择风格");
+    JButton button3 = new JButton("退出游戏");
     public Menu(int width, int height) {
         setTitle("Menu"); //设置标题
+        this.label = new JLabel();
         this.WIDTH = width;
         this.HEIGTH = height;
 
@@ -40,60 +43,70 @@ public class Menu extends JFrame {
     }
 
     private void addStartGameButton() {
-        JButton button = new JButton("开始游戏");
-        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 180);
-        button.setSize(200, 60);
-        button.setFont(new Font("黑体", Font.BOLD, 20));
-        add(button);
-
-
-        button.addActionListener(new ActionListener() {
+        button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Menu.this.dispose();
                 new ChooseGame(1000,760);
                 System.out.println("Click ChooseGame");
-
             }
         });
     }
 
     private void addChangeStyleButton() {
-        JButton button = new JButton("选择风格");
-        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 280);
-        button.setSize(200, 60);
-        button.setFont(new Font("黑体", Font.BOLD, 20));
-        add(button);
-
-        button.addActionListener(e -> {
+        button2.addActionListener(e -> {
+            System.out.println("mouseListener");
+            setBackground();
+            repaint();
         });
     }
 
     private void addExitButton() {
-        JButton button = new JButton("退出游戏");
-        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
-        button.setFont(new Font("黑体", Font.BOLD, 20));
-        button.setSize(200, 60);
-        button.setVisible(true);
-        add(button);
-
-        button.addActionListener(e -> {
+        button3.addActionListener(e -> {
             System.out.println("Click exit");
             System.exit(1);
         });
     }
 
+    private String resetPath(String oldPath){
+        if (oldPath.equals("./images/2.webp")) return "./images/1.jpeg";
+        else return "./images/2.webp";
+    }
+
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+        setLocationRelativeTo(null);
+        setSize(1000,760);
+        button1.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 180);
+        button1.setSize(200, 60);
+        button1.setFont(new Font("黑体", Font.BOLD, 20));
+        add(button1);
+
+        button2.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 280);
+        button2.setSize(200, 60);
+        button2.setFont(new Font("黑体", Font.BOLD, 20));
+        add(button2);
+
+        button3.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
+        button3.setFont(new Font("黑体", Font.BOLD, 20));
+        button3.setSize(200, 60);
+        button3.setVisible(true);
+        add(button3);
+    }
+
+    public static String path = "./images/2.webp";
+    public static ImageIcon icon1;
+
     private void setBackground(){
+        System.out.println("setBackground");
         JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
         imPanel.setOpaque(false);//将内容面板设为透明
-        ImageIcon icon1=new ImageIcon("./images/1.jpeg");//背景图
-        ImageIcon icon2=new ImageIcon("./images/2.webp");
-        ImageIcon currenticon=new ImageIcon();
-        JLabel label = new JLabel(icon1);//往一个标签中加入图片
+        path = resetPath(path);
+        icon1=new ImageIcon(path);//背景图
+        label.setIcon(icon1);//往一个标签中加入图片
         label.setBounds(0, 0, WIDTH, HEIGTH);//设置标签位置大小，记得大小要和窗口一样大
         icon1.setImage(icon1.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));//图片自适应窗口大小
-        getLayeredPane().add(label,new Integer(Integer.MIN_VALUE));
-        label.repaint(0,0,label.getWidth(), label.getHeight());
-
+        getLayeredPane().add(label,Integer.MIN_VALUE);
     }
 }
