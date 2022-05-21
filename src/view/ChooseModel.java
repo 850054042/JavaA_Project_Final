@@ -31,7 +31,7 @@ public class ChooseModel extends JFrame {
 
     private void addHumanBattleButton() {
         JButton button = new JButton("玩家VS玩家");
-        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 180);
+        button.setLocation(HEIGTH / 10 + 315, HEIGTH / 10 + 180);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -49,7 +49,7 @@ public class ChooseModel extends JFrame {
 
     private void addComputerBattleButton() {
         JButton button = new JButton("玩家VS电脑");
-        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 280);
+        button.setLocation(HEIGTH / 10 + 315, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -67,7 +67,7 @@ public class ChooseModel extends JFrame {
 
     private void addReturnButton() {
         JButton button = new JButton("返回");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 380);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);

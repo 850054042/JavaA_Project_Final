@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PawnChangeMenu extends JFrame {
-    private final int WIDTH = 360;
+    private final int WIDTH = 1000;
     private final int HEIGTH = 760;
     private Acts acts;
     public PawnChangeMenu(Chessboard chessboard, ChessComponent chess, ClickController listener, int size, Acts acts) {
@@ -32,7 +32,7 @@ public class PawnChangeMenu extends JFrame {
 
     private void addLabel() {
         JLabel statusLabel = new JLabel("兵の升变");
-        statusLabel.setLocation(HEIGTH / 10 + 15, HEIGTH / 10);
+        statusLabel.setLocation(HEIGTH / 10 + 315, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
         add(statusLabel);
@@ -40,7 +40,7 @@ public class PawnChangeMenu extends JFrame {
 
     private void addQueenButton(Chessboard chessboard,ChessComponent chess1, ClickController listener, int size) {
         JButton button = new JButton("变身为后");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 180);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -60,7 +60,7 @@ public class PawnChangeMenu extends JFrame {
 
     private void addKnightButton(Chessboard chessboard,ChessComponent chess1, ClickController listener, int size) {
         JButton button = new JButton("变身为马");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 280);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -79,7 +79,7 @@ public class PawnChangeMenu extends JFrame {
 
     private void addRookButton(Chessboard chessboard,ChessComponent chess1, ClickController listener, int size) {
         JButton button = new JButton("变身为车");
-        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 380);
+        button.setLocation(HEIGTH / 10 + 315, HEIGTH / 10 + 380);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -99,7 +99,7 @@ public class PawnChangeMenu extends JFrame {
 
     private void addBishopButton(Chessboard chessboard,ChessComponent chess1, ClickController listener, int size) {
         JButton button = new JButton("变身为象");
-        button.setLocation(HEIGTH / 10, HEIGTH / 10 + 480);
+        button.setLocation(HEIGTH / 10 + 315, HEIGTH / 10 + 480);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);

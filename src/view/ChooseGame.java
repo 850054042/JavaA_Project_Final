@@ -30,7 +30,7 @@ public class ChooseGame extends JFrame{
 
     private void addNewGameButton() {
         JButton button = new JButton("新游戏");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 180);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -48,7 +48,7 @@ public class ChooseGame extends JFrame{
 
     private void addLoadGameButton() {
         JButton button = new JButton("选择存档");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 280);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -65,7 +65,7 @@ public class ChooseGame extends JFrame{
 
     private void addReturnButton() {
         JButton button = new JButton("返回");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 380);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);

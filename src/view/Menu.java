@@ -29,13 +29,12 @@ public class Menu extends JFrame {
         addStartGameButton();
         addLabel();
         addChangeStyleButton();
-        addPlayMusicButton();
         addExitButton();
     }
 
     private void addLabel() {
         JLabel statusLabel = new JLabel("国际象棋");
-        statusLabel.setLocation(HEIGTH / 10 + 15, HEIGTH / 10);
+        statusLabel.setLocation(HEIGTH / 10 + 330, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
         add(statusLabel);
@@ -43,7 +42,7 @@ public class Menu extends JFrame {
 
     private void addStartGameButton() {
         JButton button = new JButton("开始游戏");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 180);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 180);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
@@ -62,35 +61,16 @@ public class Menu extends JFrame {
 
     private void addChangeStyleButton() {
         JButton button = new JButton("选择风格");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 280);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 280);
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
 
-    }
-
-    private void addPlayMusicButton() {
-        JButton button = new JButton("播放音乐");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 380);
-        button.setSize(200, 60);
-        button.setFont(new Font("黑体", Font.BOLD, 20));
-        add(button);
-
-
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //new MusicTest();
-                System.out.println("Click PlayMusic");
-
-            }
-
-        });
     }
 
     private void addExitButton() {
         JButton button = new JButton("退出游戏");
-        button.setLocation(HEIGTH/10, HEIGTH / 10 + 480);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);
