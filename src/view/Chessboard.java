@@ -143,6 +143,15 @@ public class Chessboard extends JComponent {
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
         // Note that chess1 has higher priority, 'destroys' chess2 if exists.
         boolean isChess2Empty = true;
+        int result = 0;
+        if(chess2 instanceof KingChessComponent){
+            if(chess2.getChessColor() == ChessColor.BLACK){
+                result = 1;
+            }
+            else {
+                result = 2;
+            }
+        }
         Acts acts = new Acts();
         acts.setBeEaten(chess2);
         acts.setStartingPoint(chess1.getChessboardPoint());
@@ -220,8 +229,6 @@ public class Chessboard extends JComponent {
                 row2 = chess2.getChessboardPoint().getX(); col2 = chess2.getChessboardPoint().getY();
                 chessComponents[row1][col1] = chess1;
                 chessComponents[row2][col2] = chess2;
-                chess1.repaint();
-                chess2.repaint();
             }
             else{
                 chess1 = chessComponents[row][2];
@@ -241,9 +248,9 @@ public class Chessboard extends JComponent {
                 row2 = chess2.getChessboardPoint().getX(); col2 = chess2.getChessboardPoint().getY();
                 chessComponents[row1][col1] = chess1;
                 chessComponents[row2][col2] = chess2;
-                chess1.repaint();
-                chess2.repaint();
             }
+            chess1.repaint();
+            chess2.repaint();
             swapColor();
             return;
         }
@@ -253,11 +260,11 @@ public class Chessboard extends JComponent {
         chessComponents[row1][col1] = chess1;
         chessComponents[row2][col2] = chess2;
         if(acts.isPawnChange()){
-            ChessComponent changed = chessComponents[acts.getTargetPoint().getX()][acts.getTargetPoint().getY()];
+            ChessComponent changed = chessComponents[acts.getStartingPoint().getX()][acts.getStartingPoint().getY()];
             remove(changed);
-            ChessComponent chess = new PawnChessComponent(changed.getChessboardPoint(), changed.getLocation(), changed.getChessColor(), clickController, CHESS_SIZE);
-            add(chess);
-            chess.repaint();
+            add(changed = new PawnChessComponent(changed.getChessboardPoint(), changed.getLocation(), changed.getChessColor(), clickController, CHESS_SIZE));
+            chessComponents[acts.getStartingPoint().getX()][acts.getStartingPoint().getY()] = changed;
+            changed.repaint();
         }
         int row3 = acts.getBeEatenPoint().getX(), col3 = acts.getBeEatenPoint().getY();
         remove(chessComponents[row3][col3]);

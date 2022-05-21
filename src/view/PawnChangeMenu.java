@@ -54,6 +54,7 @@ public class PawnChangeMenu extends JFrame {
                 ChessComponent chess = new QueenChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
                 chessboard.add(chess);
                 chess.repaint();
+                chessboard.getChessComponents()[chess1.getChessboardPoint().getX()][chess1.getChessboardPoint().getY()] = chess;
             }
         });
     }
@@ -73,6 +74,7 @@ public class PawnChangeMenu extends JFrame {
                 ChessComponent chess = new KnightChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
                 chessboard.add(chess);
                 chess.repaint();
+                chessboard.getChessComponents()[chess1.getChessboardPoint().getX()][chess1.getChessboardPoint().getY()] = chess;
             }
         });
     }
@@ -93,6 +95,7 @@ public class PawnChangeMenu extends JFrame {
                 ChessComponent chess = new RookChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
                 chessboard.add(chess);
                 chess.repaint();
+                chessboard.getChessComponents()[chess1.getChessboardPoint().getX()][chess1.getChessboardPoint().getY()] = chess;
             }
         });
     }
@@ -113,6 +116,7 @@ public class PawnChangeMenu extends JFrame {
                 ChessComponent chess = new BishopChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
                 chessboard.add(chess);
                 chess.repaint();
+                chessboard.getChessComponents()[chess1.getChessboardPoint().getX()][chess1.getChessboardPoint().getY()] = chess;
             }
         });
     }
