@@ -55,7 +55,6 @@ public class PrepareExit extends JFrame {
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-
     }
 
     private void addRecordButton() {
