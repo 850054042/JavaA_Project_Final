@@ -70,8 +70,8 @@ public class Menu extends JFrame {
     }
 
     private String resetPath(String oldPath){
-        if (oldPath.equals("./images/2.webp")) return "./images/1.jpeg";
-        else return "./images/2.webp";
+        if (oldPath.equals("./images/3.jpg")) return "./images/1.jpeg";
+        else return "./images/3.jpg";
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Menu extends JFrame {
         add(button3);
     }
 
-    public static String path = "./images/2.webp";
+    public static String path = "./images/3.jpg";
     public static ImageIcon icon1;
 
     private void setBackground(){
