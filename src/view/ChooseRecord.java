@@ -55,6 +55,8 @@ public class ChooseRecord extends JFrame{
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
         button.addActionListener(e -> {
+            GameController gameController = new GameController(new Chessboard());
+            gameController.loadGameFromFile("Save2.txt");
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);
             System.out.println("Click ChooseRecordTwo");
@@ -68,6 +70,8 @@ public class ChooseRecord extends JFrame{
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
         button.addActionListener(e -> {
+            GameController gameController = new GameController(new Chessboard());
+            gameController.loadGameFromFile("Save3.txt");
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);
             System.out.println("Click ChooseRecordThree");
