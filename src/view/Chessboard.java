@@ -52,14 +52,14 @@ public class Chessboard extends JComponent {
         setLayout(null); // Use absolute layout.
         setSize(76 * 8, 76 * 8);
         CHESS_SIZE = 76;
-        System.out.printf("chessboard size = %d, chess size = %d\n", 76, CHESS_SIZE);
+        //System.out.printf("chessboard size = %d, chess size = %d\n", 76, CHESS_SIZE);
     }
 
     public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
         setSize(width, height);
         CHESS_SIZE = width / 8;
-        System.out.printf("chessboard size = %d, chess size = %d\n", width, CHESS_SIZE);
+        //System.out.printf("chessboard size = %d, chess size = %d\n", width, CHESS_SIZE);
         if(!loaded){
             initEmptyChessboard();
         }
@@ -110,7 +110,7 @@ public class Chessboard extends JComponent {
     }
 
     public void castleSwap(ChessComponent chess1, ChessComponent chess2){//王车易位
-        System.out.println("castle!");
+        //System.out.println("castle!");
         int row = chess1.getChessboardPoint().getX();
         int col1 = chess1.getChessboardPoint().getY();
         int col2 = chess2.getChessboardPoint().getY();

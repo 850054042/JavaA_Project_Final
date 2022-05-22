@@ -53,7 +53,7 @@ public class GameOver extends JFrame {
             chessGameFrame.dispose();
             Menu menu = new Menu(1000,760);
             menu.setVisible(true);
-            System.out.println("Click Exit");
+            //System.out.println("Click Exit");
         });
     }
 

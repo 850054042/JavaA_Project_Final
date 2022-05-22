@@ -102,7 +102,7 @@ public class ChessGameFrame extends JFrame {
             statusLabel.setText("白方回合");
         statusLabel.setLocation(HEIGTH - 20, HEIGTH / 10);
         statusLabel.setSize(200, 60);
-        statusLabel.setFont(new Font("宋体", Font.BOLD, 20));
+        statusLabel.setFont(new Font("黑体", Font.BOLD, 29));
         chessboard.setLabel(statusLabel);
         add(statusLabel);
     }
@@ -150,7 +150,7 @@ public class ChessGameFrame extends JFrame {
         add(button);
 
         button.addActionListener(e -> {
-            System.out.println("Click Restart");
+            //System.out.println("Click Restart");
             ChessGameFrame.this.dispose();
             ChessGameFrame anotherchessgameframe = new ChessGameFrame(1000,760);
             anotherchessgameframe.setVisible(true);
@@ -165,7 +165,7 @@ public class ChessGameFrame extends JFrame {
         add(button);
 
         button.addActionListener(e -> {
-            System.out.println("Click Return");
+            //System.out.println("Click Return");
             ChessGameFrame.this.setVisible(false);
             PrepareExit prepareExit  = new PrepareExit(1000,760, this);
             prepareExit.setVisible(true);

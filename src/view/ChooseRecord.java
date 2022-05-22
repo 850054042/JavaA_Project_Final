@@ -45,7 +45,7 @@ public class ChooseRecord extends JFrame{
             gameController.loadGameFromFile("Save1.txt");
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);
-            System.out.println("Click ChooseRecordOne");
+            //System.out.println("Click ChooseRecordOne");
         });
     }
 
@@ -60,7 +60,7 @@ public class ChooseRecord extends JFrame{
             gameController.loadGameFromFile("Save2.txt");
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);
-            System.out.println("Click ChooseRecordTwo");
+            //System.out.println("Click ChooseRecordTwo");
         });
     }
 
@@ -75,7 +75,7 @@ public class ChooseRecord extends JFrame{
             gameController.loadGameFromFile("Save3.txt");
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);
-            System.out.println("Click ChooseRecordThree");
+            //System.out.println("Click ChooseRecordThree");
         });
     }
 
@@ -93,7 +93,7 @@ public class ChooseRecord extends JFrame{
             gameController.loadGameFromFile(jFileChooser.getSelectedFile().getName());
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);
-            System.out.println("Click ChooseRecord");
+            //System.out.println("Click ChooseRecord");
         });
     }
 
@@ -108,7 +108,7 @@ public class ChooseRecord extends JFrame{
         button.addActionListener(e -> {
             ChooseRecord.this.dispose();
             new ChooseGame(1000,760);
-            System.out.println("Click ChooseRecordThree");
+            //System.out.println("Click ChooseRecordThree");
         });
     }
 

@@ -46,14 +46,14 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.dispose();
                 new ChooseGame(1000,760);
-                System.out.println("Click ChooseGame");
+                //System.out.println("Click ChooseGame");
             }
         });
     }
 
     private void addChangeStyleButton() {
         button2.addActionListener(e -> {
-            System.out.println("mouseListener");
+            //System.out.println("mouseListener");
             path = resetPath(path);
             setBackground();
             repaint();
@@ -63,7 +63,7 @@ public class Menu extends JFrame {
 
     private void addExitButton() {
         button3.addActionListener(e -> {
-            System.out.println("Click exit");
+            //System.out.println("Click exit");
             System.exit(1);
         });
     }
@@ -105,7 +105,7 @@ public class Menu extends JFrame {
     public static ImageIcon icon1;
 
     private void setBackground(){
-        System.out.println("setBackground");
+        //System.out.println("setBackground");
         JPanel imPanel=(JPanel) this.getContentPane();//注意内容面板必须强转为JPanel才可以实现下面的设置透明
         imPanel.setOpaque(false);//将内容面板设为透明
         icon1=new ImageIcon(path);//背景图

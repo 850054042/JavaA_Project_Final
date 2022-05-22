@@ -46,7 +46,7 @@ public class NoteRecord extends JFrame{
             NoteRecord.this.dispose();
             Menu menu = new Menu(1000,760);
             menu.setVisible(true);
-            System.out.println("Click ChooseRecordOne");
+            //System.out.println("Click ChooseRecordOne");
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("Save1.txt"));
                 writer.write(chessboard.getChessboardGraph());
@@ -68,7 +68,7 @@ public class NoteRecord extends JFrame{
             NoteRecord.this.dispose();
             Menu menu = new Menu(1000,760);
             menu.setVisible(true);
-            System.out.println("Click ChooseRecordTwo");
+            //System.out.println("Click ChooseRecordTwo");
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("Save2.txt"));
                 writer.write(chessboard.getChessboardGraph());
@@ -90,7 +90,7 @@ public class NoteRecord extends JFrame{
             NoteRecord.this.dispose();
             Menu menu = new Menu(1000,760);
             menu.setVisible(true);
-            System.out.println("Click ChooseRecordThree");
+            //System.out.println("Click ChooseRecordThree");
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("Save3.txt"));
                 writer.write(chessboard.getChessboardGraph());
@@ -114,7 +114,7 @@ public class NoteRecord extends JFrame{
             NoteRecord.this.dispose();
             PrepareExit prepareExit = new PrepareExit(1000,760,chessGameFrame);
             prepareExit.setVisible(true);
-            System.out.println("Click Return");
+            //System.out.println("Click Return");
         });
     }
 

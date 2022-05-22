@@ -39,7 +39,7 @@ public class ChooseGame extends JFrame{
             ChooseGame.this.dispose();
             ChooseModel chooseModel = new ChooseModel(1000,760);
             chooseModel.setVisible(true);
-            System.out.println("Click StartNewGame");
+            //System.out.println("Click StartNewGame");
         });
     }
 
@@ -53,7 +53,7 @@ public class ChooseGame extends JFrame{
         button.addActionListener(e -> {
             ChooseGame.this.dispose();
             new ChooseRecord(1000,860);
-            System.out.println("Click ChooseRecord");
+            //System.out.println("Click ChooseRecord");
         });
     }
 
@@ -71,7 +71,7 @@ public class ChooseGame extends JFrame{
                 ChooseGame.this.dispose();
                 Menu menu = new Menu(1000,760);
                 menu.setVisible(true);
-                System.out.println("Click Return");
+                //System.out.println("Click Return");
             }
         });
     }

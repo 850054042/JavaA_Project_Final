@@ -23,7 +23,7 @@ public class GameController {
             int result = chessboard.loadGame(chessData);
             if(path.endsWith(".txt")) {
                 if (result == 0) {
-                    System.out.println("loading......");
+                    //System.out.println("loading......");
                     ChessGameFrame chessGameFrame = new ChessGameFrame(chessboard, this);
                     chessGameFrame.setVisible(true);
                     return chessData;

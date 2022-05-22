@@ -42,7 +42,7 @@ public class PrepareExit extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PrepareExit.this.dispose();
-                System.out.println("Click ReturnToGame");
+                //System.out.println("Click ReturnToGame");
                 chessGameFrame.setVisible(true);
             }
         });
@@ -62,7 +62,7 @@ public class PrepareExit extends JFrame {
                 PrepareExit.this.dispose();
                 new NoteRecord(1000,760,chessGameFrame);
                 chessGameFrame.dispose();
-                System.out.println("Click SetRecord");
+                //System.out.println("Click SetRecord");
             }
         });
     }
@@ -82,7 +82,7 @@ public class PrepareExit extends JFrame {
                 Menu menu = new Menu(1000,760);
                 menu.setVisible(true);
                 chessGameFrame.dispose();
-                System.out.println("Click Exit");
+                //System.out.println("Click Exit");
             }
         });
     }

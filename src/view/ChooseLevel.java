@@ -45,7 +45,7 @@ public class ChooseLevel extends JFrame {
                 ChooseLevel.this.dispose();
                 ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
                 chessGameFrame.setVisible(true);
-                System.out.println("Easy Mode!");
+                //System.out.println("Easy Mode!");
                 Chessboard.AILevel = 1;
             }
         });
@@ -63,7 +63,7 @@ public class ChooseLevel extends JFrame {
                 ChooseLevel.this.dispose();
                 ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
                 chessGameFrame.setVisible(true);
-                System.out.println("Normal Mode!");
+                //System.out.println("Normal Mode!");
                 Chessboard.AILevel = 2;
             }
         });
@@ -81,7 +81,7 @@ public class ChooseLevel extends JFrame {
                 ChooseLevel.this.dispose();
                 ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
                 chessGameFrame.setVisible(true);
-                System.out.println("Hard Mode!");
+                //System.out.println("Hard Mode!");
                 Chessboard.AILevel = 3;
             }
         });
@@ -106,7 +106,7 @@ public class ChooseLevel extends JFrame {
                 ChooseLevel.this.dispose();
                 ChooseModel chooseModel = new ChooseModel(1000,760);
                 chooseModel.setVisible(true);
-                System.out.println("Click Return");
+                //System.out.println("Click Return");
             }
         });
     }

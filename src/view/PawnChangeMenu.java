@@ -48,7 +48,7 @@ public class PawnChangeMenu extends JFrame {
 
         button.addActionListener(e -> {
             PawnChangeMenu.this.dispose();
-            System.out.println("Click ChooseQueen");
+            //System.out.println("Click ChooseQueen");
             ChessComponent chess = new QueenChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
             chessboard.add(chess);
             chess.repaint();
@@ -65,7 +65,7 @@ public class PawnChangeMenu extends JFrame {
 
         button.addActionListener(e -> {
             PawnChangeMenu.this.dispose();
-            System.out.println("Click ChooseKnight");
+            //System.out.println("Click ChooseKnight");
             ChessComponent chess = new KnightChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
             chessboard.add(chess);
             chess.repaint();
@@ -83,7 +83,7 @@ public class PawnChangeMenu extends JFrame {
 
         button.addActionListener(e -> {
             PawnChangeMenu.this.dispose();
-            System.out.println("Click ChooseRook");
+            //System.out.println("Click ChooseRook");
             ChessComponent chess = new RookChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
             chessboard.add(chess);
             chess.repaint();
@@ -101,7 +101,7 @@ public class PawnChangeMenu extends JFrame {
 
         button.addActionListener(e -> {
             PawnChangeMenu.this.dispose();
-            System.out.println("Click ChooseBishop");
+            //System.out.println("Click ChooseBishop");
             ChessComponent chess = new BishopChessComponent(chess1.getChessboardPoint(), chess1.getLocation(), chess1.getChessColor(), listener, size);
             chessboard.add(chess);
             chess.repaint();

@@ -41,7 +41,7 @@ public class ChooseModel extends JFrame {
                 ChooseModel.this.dispose();
                 ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
                 chessGameFrame.setVisible(true);
-                System.out.println("Click Battle!");
+                //System.out.println("Click Battle!");
                 Chessboard.gameMode = 0;
             }
         });
@@ -59,7 +59,7 @@ public class ChooseModel extends JFrame {
                 ChooseModel.this.dispose();
                 ChooseLevel chooseLevel = new ChooseLevel(1000,760);
                 chooseLevel.setVisible(true);
-                System.out.println("Click ChooseLevel");
+                //System.out.println("Click ChooseLevel");
                 Chessboard.gameMode = 1;
             }
         });
@@ -79,7 +79,7 @@ public class ChooseModel extends JFrame {
                 ChooseModel.this.dispose();
                 ChooseGame chooseGame = new ChooseGame(1000,760);
                 chooseGame.setVisible(true);
-                System.out.println("Click Return");
+                //System.out.println("Click Return");
             }
         });
     }
