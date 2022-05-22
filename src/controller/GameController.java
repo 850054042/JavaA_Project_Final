@@ -20,7 +20,7 @@ public class GameController {
             List<String> chessData = Files.readAllLines(Path.of(path));
             chessboard.loadGame(chessData);
             System.out.println("loading......");
-            ChessGameFrame chessGameFrame = new ChessGameFrame(chessboard);
+            ChessGameFrame chessGameFrame = new ChessGameFrame(chessboard,this);
             chessGameFrame.setVisible(true);
             return chessData;
         } catch (IOException e) {

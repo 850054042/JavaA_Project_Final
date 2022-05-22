@@ -1,9 +1,9 @@
-RRBQRBRR
-RRR_R__R
-_____R__
-___Rr_R_
+RNBQKB_R
+PPPnPPPP
 ________
-_____r__
-rrrrrrrr
-rrbqrb_r
+________
+______N_
+________
+pppppppp
+rnbqkb_r
 b

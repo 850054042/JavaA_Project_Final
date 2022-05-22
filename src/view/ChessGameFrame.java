@@ -2,6 +2,7 @@
 package view;
 
 import controller.GameController;
+import model.ChessColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +38,7 @@ public class ChessGameFrame extends JFrame {
         addReturnButton();
     }
 
-    public ChessGameFrame(Chessboard chessboard){
+    public ChessGameFrame(Chessboard chessboard, GameController gameController){
         setTitle("Battle!"); //设置标题
         this.WIDTH = 1000;
         this.HEIGTH = 760;
@@ -49,9 +50,9 @@ public class ChessGameFrame extends JFrame {
         setLayout(null);
 
         setBackground();
-        chessboard.setLocation(HEIGTH / 10, HEIGTH / 10);
         this.chessboard = chessboard;
-        gameController = new GameController(chessboard);
+        chessboard.setLocation(HEIGTH / 10, HEIGTH / 10);
+        this.gameController = gameController;
         add(chessboard);
         chessboard.setChessGameFrame(this);
         addLabel();
@@ -75,7 +76,11 @@ public class ChessGameFrame extends JFrame {
     }
 
     private void addLabel() {
-        JLabel statusLabel = new JLabel("白方回合");
+        JLabel statusLabel = new JLabel("");
+        if(chessboard.getCurrentColor() == ChessColor.BLACK)
+            statusLabel.setText("黑方回合");
+        else
+            statusLabel.setText("白方回合");
         statusLabel.setLocation(HEIGTH - 20, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("宋体", Font.BOLD, 20));

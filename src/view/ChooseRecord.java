@@ -40,7 +40,7 @@ public class ChooseRecord extends JFrame{
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
         button.addActionListener(e -> {
-            GameController gameController = new GameController(new Chessboard(76 * 8, 76 * 8));
+            GameController gameController = new GameController(new Chessboard());
             gameController.loadGameFromFile("Save1.txt");
             ChooseRecord.this.dispose();
             //new ChooseRecord(360,760);

@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class GameOver extends JFrame {
     private final int WIDTH = 360;
-    private final int HEIGTH = 760;
+    private final int HEIGTH = 500;
     ChessGameFrame chessGameFrame;
     private int result;
     public GameOver(ChessGameFrame chessGameFrame, int result) {
@@ -30,10 +30,10 @@ public class GameOver extends JFrame {
     private void addLabel() {
         JLabel statusLabel = new JLabel("");
         if(result == 1)
-            statusLabel.setText("白方胜利！");
+            statusLabel.setText("白方胜利");
         else
-            statusLabel.setText("黑方胜利！");
-        statusLabel.setLocation(HEIGTH / 2, HEIGTH / 10);
+            statusLabel.setText("黑方胜利");
+        statusLabel.setLocation(100, 80);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
         add(statusLabel);
@@ -42,7 +42,7 @@ public class GameOver extends JFrame {
 
     private void addBackToMenuButton() {
         JButton button = new JButton("返回主菜单");
-        button.setLocation(HEIGTH/10 + 200, HEIGTH / 10 + 100);
+        button.setLocation(80, 280);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);

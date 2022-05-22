@@ -48,6 +48,13 @@ public class Chessboard extends JComponent {
         this.label = label;
     }
 
+    public Chessboard(){
+        setLayout(null); // Use absolute layout.
+        setSize(76 * 8, 76 * 8);
+        CHESS_SIZE = 76;
+        System.out.printf("chessboard size = %d, chess size = %d\n", 76, CHESS_SIZE);
+    }
+
     public Chessboard(int width, int height) {
         setLayout(null); // Use absolute layout.
         setSize(width, height);
