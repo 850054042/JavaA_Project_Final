@@ -104,7 +104,8 @@ public class ChooseLevel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ChooseLevel.this.dispose();
-                new ChooseModel(360,760);
+                ChooseModel chooseModel = new ChooseModel(1000,760);
+                chooseModel.setVisible(true);
                 System.out.println("Click Return");
             }
         });

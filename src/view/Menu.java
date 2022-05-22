@@ -14,7 +14,7 @@ public class Menu extends JFrame {
     private JLabel label;
     private GameController gameController;
     JButton button1 = new JButton("开始游戏");
-    JButton button2 = new JButton("选择风格");
+    JButton button2 = new JButton("切换风格");
     JButton button3 = new JButton("退出游戏");
     public Menu(int width, int height) {
         setTitle("Menu"); //设置标题
@@ -70,8 +70,8 @@ public class Menu extends JFrame {
     }
 
     private String resetPath(String oldPath){
-        if (oldPath.equals("./images/3.jpg")) return "./images/1.jpeg";
-        else return "./images/3.jpg";
+        if (oldPath.equals("./images/2.png")) return "./images/1.jpeg";
+        else return "./images/2.png";
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Menu extends JFrame {
         add(button3);
     }
 
-    public static String path = "./images/3.jpg";
+    public static String path = "./images/2.png";
     public static ImageIcon icon1;
 
     private void setBackground(){
