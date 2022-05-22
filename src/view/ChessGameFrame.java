@@ -38,7 +38,7 @@ public class ChessGameFrame extends JFrame {
             JLabel time = new JLabel("还剩15秒");
             time.setLocation(HEIGTH - 20, HEIGTH / 10 + 100);
             time.setSize(200, 60);
-            time.setFont(new Font("宋体", Font.BOLD, 20));
+            time.setFont(new Font("黑体", Font.BOLD, 30));
             add(time);
             setTimer(time);
         }
@@ -70,7 +70,7 @@ public class ChessGameFrame extends JFrame {
             JLabel time = new JLabel("还剩15秒");
             time.setLocation(HEIGTH - 20, HEIGTH / 10 + 100);
             time.setSize(200, 60);
-            time.setFont(new Font("宋体", Font.BOLD, 20));
+            time.setFont(new Font("黑体", Font.BOLD, 30));
             add(time);
             setTimer(time);
         }
@@ -102,7 +102,7 @@ public class ChessGameFrame extends JFrame {
             statusLabel.setText("白方回合");
         statusLabel.setLocation(HEIGTH - 20, HEIGTH / 10);
         statusLabel.setSize(200, 60);
-        statusLabel.setFont(new Font("黑体", Font.BOLD, 29));
+        statusLabel.setFont(new Font("黑体", Font.BOLD, 30));
         chessboard.setLabel(statusLabel);
         add(statusLabel);
     }
@@ -113,6 +113,7 @@ public class ChessGameFrame extends JFrame {
             turnTime--;
             String time1 = "还剩" + turnTime +"秒";
             varTime.setText(time1);
+            varTime.setFont(new Font("黑体",Font.BOLD,30));
             if(turnTime == 0){
                 chessboard.swapColor();
                 turnTime = 15;

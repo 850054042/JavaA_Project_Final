@@ -69,7 +69,7 @@ public class Menu extends JFrame {
     }
 
     private String resetPath(String oldPath){
-        if (oldPath.equals("./images/2.png")) return "./images/1.jpeg";
+        if (oldPath.equals("./images/2.png")) return "./images/1.png";
         else return "./images/2.png";
     }
 
