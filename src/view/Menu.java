@@ -36,11 +36,8 @@ public class Menu extends JFrame {
     }
 
     private void addLabel() {
-
-        statusLabel.setLocation(HEIGTH / 10 + 330, HEIGTH / 10);
-        statusLabel.setSize(200, 60);
-        statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
-        add(statusLabel);
+        repaint();
+        setBackground();
     }
 
     private void addStartGameButton() {
@@ -81,6 +78,12 @@ public class Menu extends JFrame {
         super.paint(g);
         setLocationRelativeTo(null);
         setSize(1000,760);
+
+        statusLabel.setLocation(HEIGTH / 10 + 310, HEIGTH / 10);
+        statusLabel.setSize(300, 90);
+        statusLabel.setFont(new Font("黑体", Font.BOLD, 50));
+        add(statusLabel);
+
         button1.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 180);
         button1.setSize(200, 60);
         button1.setFont(new Font("黑体", Font.BOLD, 20));
