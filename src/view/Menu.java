@@ -76,11 +76,6 @@ public class Menu extends JFrame {
         else return "./images/2.png";
     }
 
-    public String getPath(String currentPath){
-        if(currentPath.equals("./images/2.png")) return "./images/2.png";
-        else return "./images/1.jpeg";
-    }
-
     @Override
     public void paint(Graphics g){
         super.paint(g);

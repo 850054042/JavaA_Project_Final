@@ -33,16 +33,16 @@ public class GameOver extends JFrame {
             statusLabel.setText("白方胜利！");
         else
             statusLabel.setText("黑方胜利！");
-        statusLabel.setLocation(HEIGTH / 2, HEIGTH / 10);
+        statusLabel.setLocation(HEIGTH / 10, HEIGTH / 10);
         statusLabel.setSize(200, 60);
-        statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
+        statusLabel.setFont(new Font("黑体", Font.BOLD, 30));
         add(statusLabel);
     }
 
 
     private void addBackToMenuButton() {
         JButton button = new JButton("返回主菜单");
-        button.setLocation(HEIGTH/10 + 200, HEIGTH / 10 + 100);
+        button.setLocation(HEIGTH/10, HEIGTH / 10 + 100);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);
