@@ -60,30 +60,35 @@ public class Chessboard extends JComponent {
         setSize(width, height);
         CHESS_SIZE = width / 8;
         System.out.printf("chessboard size = %d, chess size = %d\n", width, CHESS_SIZE);
+        if(!loaded){
+            initEmptyChessboard();
+        }
 
+    }
+
+    public void initEmptyChessboard(){
         initiateEmptyChessboard();
 
-        if(!loaded) {
-            initRookOnBoard(0, 0, ChessColor.BLACK);
-            initRookOnBoard(0, 7, ChessColor.BLACK);
-            initRookOnBoard(7, 0, ChessColor.WHITE);
-            initRookOnBoard(7, 7, ChessColor.WHITE);
-            initBishopOnBoard(0, 2, ChessColor.BLACK);
-            initBishopOnBoard(0, 5, ChessColor.BLACK);
-            initBishopOnBoard(7, 2, ChessColor.WHITE);
-            initBishopOnBoard(7, 5, ChessColor.WHITE);
-            initQueenOnBoard(0, 3, ChessColor.BLACK);
-            initQueenOnBoard(7, 3, ChessColor.WHITE);
-            initKnightOnBoard(0, 1, ChessColor.BLACK);
-            initKnightOnBoard(0, 6, ChessColor.BLACK);
-            initKnightOnBoard(7, 1, ChessColor.WHITE);
-            initKnightOnBoard(7, 6, ChessColor.WHITE);
-            initKingOnBoard(0, 4, ChessColor.BLACK);
-            initKingOnBoard(7, 4, ChessColor.WHITE);
-            for (int i = 0; i < 8; i++) {
-                initPawnOnBoard(1, i, ChessColor.BLACK);
-                initPawnOnBoard(6, i, ChessColor.WHITE);
-            }
+        initRookOnBoard(0, 0, ChessColor.BLACK);
+        initRookOnBoard(0, 7, ChessColor.BLACK);
+        initRookOnBoard(7, 0, ChessColor.WHITE);
+        initRookOnBoard(7, 7, ChessColor.WHITE);
+        initBishopOnBoard(0, 2, ChessColor.BLACK);
+        initBishopOnBoard(0, 5, ChessColor.BLACK);
+        initBishopOnBoard(7, 2, ChessColor.WHITE);
+        initBishopOnBoard(7, 5, ChessColor.WHITE);
+        initQueenOnBoard(0, 3, ChessColor.BLACK);
+        initQueenOnBoard(7, 3, ChessColor.WHITE);
+        initKnightOnBoard(0, 1, ChessColor.BLACK);
+        initKnightOnBoard(0, 6, ChessColor.BLACK);
+        initKnightOnBoard(7, 1, ChessColor.WHITE);
+        initKnightOnBoard(7, 6, ChessColor.WHITE);
+        initKingOnBoard(0, 4, ChessColor.BLACK);
+        initKingOnBoard(7, 4, ChessColor.WHITE);
+        for (int i = 0; i < 8; i++) {
+            initPawnOnBoard(1, i, ChessColor.BLACK);
+            initPawnOnBoard(6, i, ChessColor.WHITE);
+
         }
     }
 
@@ -181,6 +186,11 @@ public class Chessboard extends JComponent {
         int row2 = chess2.getChessboardPoint().getX(), col2 = chess2.getChessboardPoint().getY();
         chessComponents[row1][col1] = chess1;
         chessComponents[row2][col2] = chess2;
+        if(result != 0) {
+            GameOver gameOver = new GameOver(chessGameFrame, result);
+            gameOver.setVisible(true);
+            return;
+        }
         if(chess1 instanceof PawnChessComponent){
             if(row1 == 0 || row1 == 7){
                 acts.setPawnChange(true);
@@ -209,10 +219,6 @@ public class Chessboard extends JComponent {
         chess2.repaint();
         MusicPlayer move = new MusicPlayer("./music/move.mp3");
         move.start();
-        if(result != 0) {
-            GameOver gameOver = new GameOver(chessGameFrame, result);
-            gameOver.setVisible(true);
-        }
     }
 
     public void undo(){
@@ -361,6 +367,10 @@ public class Chessboard extends JComponent {
         }else{
             sb.append('w');
         }
+        sb.append("\n");
+        sb.append(gameMode);
+        sb.append(" ");
+        sb.append(AILevel);
         return sb.toString();
     }
 
@@ -380,6 +390,7 @@ public class Chessboard extends JComponent {
         else{
             label.setText("白方回合");
         }
+        chessGameFrame.turnTime = 15;
     }
 
     private void initRookOnBoard(int row, int col, ChessColor color) {
@@ -430,7 +441,23 @@ public class Chessboard extends JComponent {
         return new Point(col * CHESS_SIZE, row * CHESS_SIZE);
     }
 
-    public void loadGame(List<String> chessData) {
+    public int loadGame(List<String> chessData) {
+        if(chessData.size() != 10){
+            String lastLine = chessData.get(chessData.size() - 2);
+            if(lastLine.length() == 1 && (lastLine.equals("w") || lastLine.equals("b"))){
+                return 1;
+            }
+            else{
+                return 3;
+            }
+        }
+        else{
+            for(int i = 0;i < 8;i++){
+                if(chessData.get(i).length() != 8){
+                    return 1;
+                }
+            }
+        }
         for(int i = 0;i < 8;i++){
             for(int j = 0;j < 8;j++){
                 char c = chessData.get(i).charAt(j);
@@ -461,9 +488,11 @@ public class Chessboard extends JComponent {
                     case 'p':
                         chessComponents[i][j] = new PawnChessComponent(new ChessboardPoint(row, col), calculatePoint(row, col), color, clickController, CHESS_SIZE);
                         break;
-                    default:
+                    case '_':
                         chessComponents[i][j] = new EmptySlotComponent(new ChessboardPoint(row, col), calculatePoint(row, col), clickController, CHESS_SIZE);
                         break;
+                    default:
+                        return 2;
                 }
                 chessComponents[i][j].setName(c);
                 chessComponents[i][j].setVisible(true);
@@ -471,6 +500,9 @@ public class Chessboard extends JComponent {
             }
         }
         currentColor = chessData.get(8).charAt(0) == 'w' ? ChessColor.WHITE:ChessColor.BLACK;
+        gameMode = chessData.get(9).charAt(0) - 48;
+        AILevel = chessData.get(9).charAt(2) - 48;
         loaded = true;
+        return 0;
     }
 }

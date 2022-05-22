@@ -35,14 +35,11 @@ public class ChooseGame extends JFrame{
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseGame.this.dispose();
-                ChooseModel chooseModel = new ChooseModel(1000,760);
-                chooseModel.setVisible(true);
-                System.out.println("Click StartNewGame");
-            }
+        button.addActionListener(e -> {
+            ChooseGame.this.dispose();
+            ChooseModel chooseModel = new ChooseModel(1000,760);
+            chooseModel.setVisible(true);
+            System.out.println("Click StartNewGame");
         });
     }
 
@@ -55,7 +52,7 @@ public class ChooseGame extends JFrame{
 
         button.addActionListener(e -> {
             ChooseGame.this.dispose();
-            new ChooseRecord(1000,760);
+            new ChooseRecord(1000,860);
             System.out.println("Click ChooseRecord");
         });
     }

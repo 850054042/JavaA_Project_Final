@@ -6,6 +6,8 @@ import model.ChessColor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * 这个类表示游戏过程中的整个游戏界面，是一切的载体
@@ -17,6 +19,7 @@ public class ChessGameFrame extends JFrame {
     public final int CHESSBOARD_SIZE;
     private GameController gameController;
     private Chessboard chessboard;
+    public int turnTime = 15;
 
     public ChessGameFrame(int width, int height) {
         setTitle("Battle!"); //设置标题
@@ -31,6 +34,14 @@ public class ChessGameFrame extends JFrame {
 
         setBackground();
         addChessboard();
+        if(Chessboard.gameMode == 0) {
+            JLabel time = new JLabel("还剩15秒");
+            time.setLocation(HEIGTH - 20, HEIGTH / 10 + 100);
+            time.setSize(200, 60);
+            time.setFont(new Font("宋体", Font.BOLD, 20));
+            add(time);
+            setTimer(time);
+        }
         addLabel();
         addHelloButton();
         addRetractButton();
@@ -55,6 +66,14 @@ public class ChessGameFrame extends JFrame {
         this.gameController = gameController;
         add(chessboard);
         chessboard.setChessGameFrame(this);
+        if(Chessboard.gameMode == 0) {
+            JLabel time = new JLabel("还剩15秒");
+            time.setLocation(HEIGTH - 20, HEIGTH / 10 + 100);
+            time.setSize(200, 60);
+            time.setFont(new Font("宋体", Font.BOLD, 20));
+            add(time);
+            setTimer(time);
+        }
         addLabel();
         addHelloButton();
         addRetractButton();
@@ -86,6 +105,20 @@ public class ChessGameFrame extends JFrame {
         statusLabel.setFont(new Font("宋体", Font.BOLD, 20));
         chessboard.setLabel(statusLabel);
         add(statusLabel);
+    }
+
+    private void setTimer(JLabel time){
+        JLabel varTime = time;
+        Timer timeAction = new Timer(1000, e -> {
+            turnTime--;
+            String time1 = "还剩" + turnTime +"秒";
+            varTime.setText(time1);
+            if(turnTime == 0){
+                chessboard.swapColor();
+                turnTime = 15;
+            }
+        });
+        timeAction.start();
     }
 
     private void addHelloButton() {

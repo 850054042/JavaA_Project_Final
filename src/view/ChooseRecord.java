@@ -30,6 +30,7 @@ public class ChooseRecord extends JFrame{
         addRecordOneButton();
         addRecordTwoButton();
         addRecordThreeButton();
+        addRecordChooseButton();
         addReturnButton();
     }
 
@@ -78,9 +79,27 @@ public class ChooseRecord extends JFrame{
         });
     }
 
+    private void addRecordChooseButton() {
+        JButton button = new JButton("自己选");
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 480);
+        button.setSize(200, 60);
+        button.setFont(new Font("黑体", Font.BOLD, 20));
+        add(button);
+        button.addActionListener(e -> {
+            GameController gameController = new GameController(new Chessboard());
+            JFrame jFrame = new JFrame();
+            JFileChooser jFileChooser = new JFileChooser("./");
+            jFileChooser.showOpenDialog(jFrame);
+            gameController.loadGameFromFile(jFileChooser.getSelectedFile().getName());
+            ChooseRecord.this.dispose();
+            //new ChooseRecord(360,760);
+            System.out.println("Click ChooseRecord");
+        });
+    }
+
     private void addReturnButton() {
         JButton button = new JButton("返回");
-        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 480);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 580);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);

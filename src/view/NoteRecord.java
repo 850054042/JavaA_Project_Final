@@ -21,6 +21,7 @@ public class NoteRecord extends JFrame{
         this.WIDTH = width;
         this.HEIGTH = height;
         chessboard = chessGameFrame.getChessboard();
+        this.chessGameFrame = chessGameFrame;
 
         setVisible(true);
         setSize(width, height);
