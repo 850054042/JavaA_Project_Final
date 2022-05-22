@@ -13,6 +13,7 @@ public class Menu extends JFrame {
     private final int HEIGTH;
     private JLabel label;
     private GameController gameController;
+    JLabel statusLabel = new JLabel("国际象棋");
     JButton button1 = new JButton("开始游戏");
     JButton button2 = new JButton("切换风格");
     JButton button3 = new JButton("退出游戏");
@@ -35,7 +36,7 @@ public class Menu extends JFrame {
     }
 
     private void addLabel() {
-        JLabel statusLabel = new JLabel("国际象棋");
+
         statusLabel.setLocation(HEIGTH / 10 + 330, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("黑体", Font.BOLD, 40));
@@ -59,6 +60,7 @@ public class Menu extends JFrame {
             path = resetPath(path);
             setBackground();
             repaint();
+            addLabel();
         });
     }
 
@@ -72,6 +74,11 @@ public class Menu extends JFrame {
     private String resetPath(String oldPath){
         if (oldPath.equals("./images/2.png")) return "./images/1.jpeg";
         else return "./images/2.png";
+    }
+
+    public String getPath(String currentPath){
+        if(currentPath.equals("./images/2.png")) return "./images/2.png";
+        else return "./images/1.jpeg";
     }
 
     @Override

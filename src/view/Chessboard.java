@@ -143,7 +143,7 @@ public class Chessboard extends JComponent {
             chess2.repaint();
             chessSwap2.repaint();
         }
-        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+        MusicPlayer move = new MusicPlayer("./music/move.mp3");
         move.start();
     }
 
@@ -200,7 +200,7 @@ public class Chessboard extends JComponent {
         actions.push(acts);
         chess1.repaint();
         chess2.repaint();
-        MusicPlayer move = new MusicPlayer("D://文件//伴奏//Queen - Yeah.mp3");
+        MusicPlayer move = new MusicPlayer("./music/move.mp3");
         move.start();
         if(result != 0) {
             GameOver gameOver = new GameOver(chessGameFrame, result);

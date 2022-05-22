@@ -27,7 +27,6 @@ public class PrepareExit extends JFrame {
 
         setBackground();
         addReturnGameButton();
-        addChangeStyleButton();
         addRecordButton();
         addBackToMenuButton();
     }
@@ -49,17 +48,9 @@ public class PrepareExit extends JFrame {
         });
     }
 
-    private void addChangeStyleButton() {
-        JButton button = new JButton("改变风格");
-        button.setLocation(HEIGTH / 10 + 315, HEIGTH / 10 + 280);
-        button.setSize(200, 60);
-        button.setFont(new Font("黑体", Font.BOLD, 20));
-        add(button);
-    }
-
     private void addRecordButton() {
         JButton button = new JButton("记录存档");
-        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 280);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);
@@ -78,7 +69,7 @@ public class PrepareExit extends JFrame {
 
     private void addBackToMenuButton() {
         JButton button = new JButton("返回主菜单");
-        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 480);
+        button.setLocation(HEIGTH/10 + 315, HEIGTH / 10 + 380);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         button.setSize(200, 60);
         button.setVisible(true);
