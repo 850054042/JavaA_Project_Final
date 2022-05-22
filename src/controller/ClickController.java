@@ -107,6 +107,14 @@ public class ClickController {
                             ChessComponent tC = chessComponents[tP.getX()][tP.getY()];
                             chessboard.swapChessComponents(chess1, tC);
                             chess1.setHasMoved(true);
+                            chess1.setLastMove(true);
+                            for(int i = 0;i < 8;i++){
+                                for(int j = 0;j < 8;j++){
+                                    if(!chess1.getChessboardPoint().equals(new ChessboardPoint(i,j))){
+                                        chessComponents[i][j].setLastMove(false);
+                                    }
+                                }
+                            }
                             break;
                         case 2://随机行棋
                             List<ChessComponent> chessComponentList = new ArrayList<>();
@@ -125,8 +133,73 @@ public class ClickController {
                                 chessboard.swapChessComponents(chess, targetChess);//正常行棋
                             }
                             chess.setHasMoved(true);
+                            chess.setLastMove(true);
+                            for(int i = 0;i < 8;i++){
+                                for(int j = 0;j < 8;j++){
+                                    if(!chess.getChessboardPoint().equals(new ChessboardPoint(i,j))){
+                                        chessComponents[i][j].setLastMove(false);
+                                    }
+                                }
+                            }
                             break;
                         case 3://打算写贪心
+                            ChessboardPoint chessboardPoint = new ChessboardPoint(1,1);
+                            ChessboardPoint startingPoint = new ChessboardPoint(1,1);
+                            int maxValue = 0;
+                            for(int i = 0;i < 8;i++)
+                                for(int j = 0;j < 8;j++)
+                                    if(chessComponents[i][j].getChessColor() == AIColor && !chessComponents[i][j].canMoveTo(chessComponents).isEmpty())
+                                        for(ChessboardPoint point : chessComponents[i][j].canMoveTo(chessComponents))
+                                            if(chessComponents[point.getX()][point.getY()].getValue() > maxValue){
+                                                maxValue = chessComponents[point.getX()][point.getY()].getValue();
+                                                chessboardPoint = point;
+                                                startingPoint = new ChessboardPoint(i,j);
+                                            }
+                            if(maxValue != 0){
+                                ChessComponent targetChess3 = chessComponents[chessboardPoint.getX()][chessboardPoint.getY()];
+                                ChessComponent startingChess = chessComponents[startingPoint.getX()][startingPoint.getY()];
+                                if(startingChess.getChessColor() == targetChess3.getChessColor()){
+                                    chessboard.castleSwap(startingChess, targetChess3);//王车易位
+                                }
+                                else {
+                                    chessboard.swapChessComponents(startingChess, targetChess3);//正常行棋
+                                }
+                                startingChess.setHasMoved(true);
+                                startingChess.setLastMove(true);
+                                for(int i = 0;i < 8;i++){
+                                    for(int j = 0;j < 8;j++){
+                                        if(!startingChess.getChessboardPoint().equals(new ChessboardPoint(i,j))){
+                                            chessComponents[i][j].setLastMove(false);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                List<ChessComponent> chessComponentList1 = new ArrayList<>();
+                                for(int i = 0;i < 8;i++)
+                                    for(int j = 0;j < 8;j++)
+                                        if(chessComponents[i][j].getChessColor() == AIColor && !chessComponents[i][j].canMoveTo(chessComponents).isEmpty())
+                                            chessComponentList1.add(chessComponents[i][j]);
+                                Random r1 = new Random();
+                                ChessComponent chess31 = chessComponentList1.get(r1.nextInt(chessComponentList1.size()));
+                                ChessboardPoint targetPoint1 = chess31.canMoveTo(chessComponents).get(r1.nextInt(chess31.canMoveTo(chessComponents).size()));
+                                ChessComponent targetChess1 = chessComponents[targetPoint1.getX()][targetPoint1.getY()];
+                                if(chess31.getChessColor() == targetChess1.getChessColor()){
+                                    chessboard.castleSwap(chess31, targetChess1);//王车易位
+                                }
+                                else {
+                                    chessboard.swapChessComponents(chess31, targetChess1);//正常行棋
+                                }
+                                chess31.setHasMoved(true);
+                                chess31.setLastMove(true);
+                                for(int i = 0;i < 8;i++){
+                                    for(int j = 0;j < 8;j++){
+                                        if(!chess31.getChessboardPoint().equals(new ChessboardPoint(i,j))){
+                                            chessComponents[i][j].setLastMove(false);
+                                        }
+                                    }
+                                }
+                            }
                             break;
                     }
                     MusicPlayer move = new MusicPlayer("./music/move.mp3");

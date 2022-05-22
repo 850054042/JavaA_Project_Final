@@ -66,6 +66,7 @@ public class QueenChessComponent extends ChessComponent {
         super(chessboardPoint, location, color, listener, size);
         this.name = color == ChessColor.BLACK ? 'Q':'q';
         initiateQueenImage(color);
+        setValue(9);
     }
 
     /**

@@ -219,6 +219,7 @@ public class Chessboard extends JComponent {
         chess2.repaint();
         MusicPlayer move = new MusicPlayer("./music/move.mp3");
         move.start();
+        showDangerKing();
     }
 
     public void undo(){

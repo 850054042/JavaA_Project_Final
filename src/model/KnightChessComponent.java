@@ -66,6 +66,7 @@ public class KnightChessComponent extends ChessComponent {
         super(chessboardPoint, location, color, listener, size);
         this.name = color == ChessColor.BLACK ? 'N':'n';
         initiateKnightImage(color);
+        setValue(3);
     }
 
     /**

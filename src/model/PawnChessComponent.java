@@ -66,6 +66,7 @@ public class PawnChessComponent extends ChessComponent {
         super(chessboardPoint, location, color, listener, size);
         this.name = color == ChessColor.BLACK ? 'P':'p';
         initiatePawnImage(color);
+        setValue((chessboardPoint.getY() == 0 || chessboardPoint.getY() == 7) ? 1:2);
     }
 
     /**

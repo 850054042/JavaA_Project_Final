@@ -66,6 +66,7 @@ public class BishopChessComponent extends ChessComponent {
         super(chessboardPoint, location, color, listener, size);
         this.name = color == ChessColor.BLACK ? 'B':'b';
         initiateBishopImage(color);
+        setValue(4);
     }
 
     /**

@@ -89,9 +89,11 @@ public class ChooseRecord extends JFrame{
             GameController gameController = new GameController(new Chessboard());
             JFrame jFrame = new JFrame();
             JFileChooser jFileChooser = new JFileChooser("./");
-            jFileChooser.showOpenDialog(jFrame);
-            gameController.loadGameFromFile(jFileChooser.getSelectedFile().getName());
-            ChooseRecord.this.dispose();
+            int flag = jFileChooser.showOpenDialog(jFrame);
+            if(flag == JFileChooser.APPROVE_OPTION) {
+                gameController.loadGameFromFile(jFileChooser.getSelectedFile().getName());
+                ChooseRecord.this.dispose();
+            }
             //new ChooseRecord(360,760);
             //System.out.println("Click ChooseRecord");
         });

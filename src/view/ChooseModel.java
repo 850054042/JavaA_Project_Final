@@ -39,10 +39,10 @@ public class ChooseModel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ChooseModel.this.dispose();
+                Chessboard.gameMode = 0;
                 ChessGameFrame chessGameFrame = new ChessGameFrame(1000,760);
                 chessGameFrame.setVisible(true);
                 //System.out.println("Click Battle!");
-                Chessboard.gameMode = 0;
             }
         });
     }
@@ -53,15 +53,12 @@ public class ChooseModel extends JFrame {
         button.setSize(200, 60);
         button.setFont(new Font("黑体", Font.BOLD, 20));
         add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ChooseModel.this.dispose();
-                ChooseLevel chooseLevel = new ChooseLevel(1000,760);
-                chooseLevel.setVisible(true);
-                //System.out.println("Click ChooseLevel");
-                Chessboard.gameMode = 1;
-            }
+        button.addActionListener(e -> {
+            ChooseModel.this.dispose();
+            Chessboard.gameMode = 1;
+            ChooseLevel chooseLevel = new ChooseLevel(1000,760);
+            chooseLevel.setVisible(true);
+            //System.out.println("Click ChooseLevel");
         });
     }
 
